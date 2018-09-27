@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Overview Activity strings -->
+    <string name="app_name">StockMonitor</string>
+    <string name="StockType">Facebook</string>
+    <string name="StockTag">Purchased at </string>
+    <string name="StockPrice">Purchased at </string>
+    <string name="OverviewButton">Details</string>
+
+    <!-- Details Activity strings -->
+    <string name="StockName">Name:</string>
+    <string name="StockTag2">Price:</string>
+    <string name="NumberOfStocks">#Stocks:</string>
+    <string name="Sector">Sector:</string>
+
+    <!-- Edit Activity strings -->
+    <string name="CheckBox1">Technology</string>
+    <string name="CheckBox2">Healthcare</string>
+    <string name="CheckBox3">Basic Materials</string>
+
+</resources>
