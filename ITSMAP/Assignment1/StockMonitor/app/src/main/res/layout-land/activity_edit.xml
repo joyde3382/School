@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="318dp"
-        android:layout_height="232dp"
+        android:layout_height="219dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
@@ -139,23 +139,24 @@
     <Button
         android:id="@+id/backBtn"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="62dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:textAllCaps = "false"
         android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saveBtn" />
 
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="97dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="32dp"
+        android:textAllCaps = "false"
         android:text="Save"
         app:layout_constraintBottom_toTopOf="@+id/backBtn"
         app:layout_constraintEnd_toEndOf="parent"

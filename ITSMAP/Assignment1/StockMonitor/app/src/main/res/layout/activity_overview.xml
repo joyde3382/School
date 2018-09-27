@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:layout_marginTop="65dp"
-        android:text="My Stock:"
+        android:text="@string/StockTag"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/overView_stockName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="53dp"
+        android:capitalize="none"
         android:text="@string/StockType"
         app:layout_constraintBottom_toTopOf="@+id/overView_sectorPic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="59dp"
+        android:capitalize="none"
         android:text="@string/StockTag"
         app:layout_constraintBottom_toTopOf="@+id/detailsBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_marginBottom="86dp"
+        android:textAllCaps = "false"
         android:text="@string/OverviewButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,5 +69,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/overView_stockName"
         app:srcCompat="@android:drawable/ic_menu_manage" />
+
+    <Button
+        android:id="@+id/langBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/langButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

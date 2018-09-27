@@ -3,9 +3,10 @@
     <!-- Overview Activity strings -->
     <string name="app_name">StockMonitor</string>
     <string name="StockType">Facebook</string>
-    <string name="StockTag">Purchased at</string>
-    <string name="StockPrice">Purchased at</string>
-    <string name="OverviewButton">Details</string>
+    <string name="StockTag">Min aktie</string>
+    <string name="StockPrice">Købt for</string>
+    <string name="OverviewButton">Detaljer</string>
+    <string name="langButton">Ændrer sprog</string>
 
     <!-- Details Activity strings -->
     <string name="StockName">Name:</string>

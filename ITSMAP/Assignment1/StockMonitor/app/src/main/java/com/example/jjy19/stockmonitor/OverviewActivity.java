@@ -2,6 +2,7 @@ package com.example.jjy19.stockmonitor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,21 +12,41 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class OverviewActivity extends AppCompatActivity {
 
     private static final String StockMessage = "stock";
     int requestCode = 101;
 
     Button detailsButton;
+    Button langButton;
     TextView nameText;
     TextView priceText;
     Stock newStock;
     ImageView sectorImage;
+    Boolean langPicker = false;
+    String languageToLoad;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
+
+        if (langPicker = false)
+            languageToLoad  = "da";
+        else
+            languageToLoad  = "en";
+
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+        this.setContentView(R.layout.activity_overview);
+
 
         nameText = findViewById(R.id.overView_stockName);
         priceText = findViewById(R.id.overView_stockPrice);
@@ -37,11 +58,22 @@ public class OverviewActivity extends AppCompatActivity {
         update();
 
         detailsButton = findViewById(R.id.detailsBtn);
+        langButton = findViewById(R.id.langBtn);
 
         detailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToDetailsActivity();
+            }
+        });
+
+        langButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                langPicker = !langPicker;
+                
+
+
             }
         });
     }

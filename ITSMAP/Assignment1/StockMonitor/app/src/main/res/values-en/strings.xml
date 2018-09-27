@@ -3,9 +3,11 @@
     <!-- Overview Activity strings -->
     <string name="app_name">StockMonitor</string>
     <string name="StockType">Facebook</string>
-    <string name="StockTag">Purchased at</string>
+    <string name="StockTag">My stock</string>
     <string name="StockPrice">Purchased at</string>
     <string name="OverviewButton">Details</string>
+    <string name="langButton">Change language</string>
+
 
     <!-- Details Activity strings -->
     <string name="StockName">Name:</string>
