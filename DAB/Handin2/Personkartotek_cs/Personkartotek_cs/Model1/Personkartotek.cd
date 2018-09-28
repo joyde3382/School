@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Personkartotek_cs.Person_Class">
+    <Position X="13.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAACAAAIAAAABAAACAAAAAgAAAAA=</HashCode>
+      <FileName>Person_Class.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="note" />
+      <Property Name="type" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Address" />
+      <Property Name="EmailAddress" />
+      <Property Name="ContactInfo" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.Email">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.Address">
+    <Position X="13" Y="5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACCAAAABAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Address.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="addressType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="city" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.ContactInfo">
+    <Position X="18.5" Y="0.75" Width="1.5" />
+    <AssociationLine Name="company" Type="Personkartotek_cs.genericType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.051" Y="0.299" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ContactInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="company" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.Note">
+    <Position X="11.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.City">
+    <Position X="13.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>City.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.genericType">
+    <Position X="17.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>genericType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.PersonType">
+    <Position X="16.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PersonType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="8.83" />
+</ClassDiagram>

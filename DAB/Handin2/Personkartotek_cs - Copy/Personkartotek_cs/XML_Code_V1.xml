@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Person>
+    <fullName>Ed Edd Eddy</fullName>
+    <type>1</type>
+  <Note noteId="1"/>
+  <EmailAddress email="main_email"/>
+  <EmailAddress email="secondary_email"/>
+  <ContactInfo
+    homePhoneNumber="11223344"
+    workPhoneNumber="44332211"
+  company="TDC" />
+  <ContactInfo
+    homePhoneNumber="55667788"
+    workPhoneNumber="88776655"
+    company="TDC" />
+  <Address
+    addressType="Lejlighed"
+    streetAddress="Kylling Alle 11"
+    countryRegion="Danmark"
+    zipCode="8200"
+    cityName="Aarhus" />
+  <Address
+    addressType="Sommerhus"
+    streetAddress="Kylling Alle 12"
+    countryRegion="Danmark"
+    zipCode="8200"
+    cityName="Aarhus" />
+</Person>
+
+
+

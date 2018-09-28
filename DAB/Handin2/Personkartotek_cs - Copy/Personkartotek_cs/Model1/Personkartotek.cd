@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Personkartotek_cs.Person_Class">
+    <Position X="13.25" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAIIABAAAAACAACAAAAAAAABAAABAAAAAAAQAAA=</HashCode>
+      <FileName>Person_Class.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="note" />
+      <Property Name="PrimaryEmailAddress" />
+      <Property Name="PrimaryAddress" />
+      <Property Name="PrimaryContactInfo" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="AlternativeAddresses" />
+      <Property Name="AlternativeContactInfo" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.Email">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.PrimaryAddress">
+    <Position X="16.75" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAoAQAAAAAAAAAAAgACAAAAABAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>PrimaryAddress.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AlternativePersonOnAddress" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.AlternativeAddress">
+    <Position X="12" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAQAAAAAAAAAQAAACAAAAABAAAAAABAAABAAAAAA=</HashCode>
+      <FileName>AlternativeAddress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.AlternativeContactInfo">
+    <Position X="18" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>AlternativeContactInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.PrimaryContactInfo">
+    <Position X="15.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>PrimaryContactInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.Note">
+    <Position X="11.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="8.83" />
+</ClassDiagram>
