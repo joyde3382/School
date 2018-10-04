@@ -1,0 +1,9 @@
+DELETE  FROM [Personkartotek_cs.PersonDBContext].dbo.Addresses
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.Cities
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.ContactInfoes
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.Emails
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.GenericTypes
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.Notes
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.Person_Class
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.PersonTypes
+DELETE	FROM [Personkartotek_cs.PersonDBContext].dbo.Person_ClassAddress
