@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -17,7 +18,7 @@ namespace Personkartotek_cs
             ContactInfo = new List<ContactInfo>();
         }
 
-        [Key]
+        [Key, Index(IsUnique = true)]
         public int personId { get; set; }
         public string fullName { get; set; }
 

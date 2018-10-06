@@ -52,19 +52,24 @@
   <ItemGroup>
     <Compile Include="City.cs" />
     <Compile Include="GenericType.cs" />
-    <Compile Include="Migrations\201809291300150_JensAdded.cs" />
-    <Compile Include="Migrations\201809291300150_JensAdded.Designer.cs">
-      <DependentUpon>201809291300150_JensAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201810050951216_help.cs" />
+    <Compile Include="Migrations\201810050951216_help.Designer.cs">
+      <DependentUpon>201810050951216_help.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809291302545_JensAdded1.cs" />
-    <Compile Include="Migrations\201809291302545_JensAdded1.Designer.cs">
-      <DependentUpon>201809291302545_JensAdded1.cs</DependentUpon>
+    <Compile Include="Migrations\201810051113260_helpMe.cs" />
+    <Compile Include="Migrations\201810051113260_helpMe.Designer.cs">
+      <DependentUpon>201810051113260_helpMe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809301151373_Note.cs" />
-    <Compile Include="Migrations\201809301151373_Note.Designer.cs">
-      <DependentUpon>201809301151373_Note.cs</DependentUpon>
+    <Compile Include="Migrations\201810051328502_helpMe1.cs" />
+    <Compile Include="Migrations\201810051328502_helpMe1.Designer.cs">
+      <DependentUpon>201810051328502_helpMe1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810051337237_helpMe2.cs" />
+    <Compile Include="Migrations\201810051337237_helpMe2.Designer.cs">
+      <DependentUpon>201810051337237_helpMe2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="myCRUD.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="PersonDBContext.cs" />
     <Compile Include="Address.cs" />
@@ -84,14 +89,17 @@
     <Content Include="deleteData.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809291300150_JensAdded.resx">
-      <DependentUpon>201809291300150_JensAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810050951216_help.resx">
+      <DependentUpon>201810050951216_help.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809291302545_JensAdded1.resx">
-      <DependentUpon>201809291302545_JensAdded1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810051113260_helpMe.resx">
+      <DependentUpon>201810051113260_helpMe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809301151373_Note.resx">
-      <DependentUpon>201809301151373_Note.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810051328502_helpMe1.resx">
+      <DependentUpon>201810051328502_helpMe1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810051337237_helpMe2.resx">
+      <DependentUpon>201810051337237_helpMe2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

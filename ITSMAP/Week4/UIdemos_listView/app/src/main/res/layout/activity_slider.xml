@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/constraintLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sliderActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <SeekBar
+        android:id="@+id/redSlider"
+        android:layout_width="262dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/blueSlider"
+        app:layout_constraintEnd_toEndOf="@+id/greenSlider"
+        app:layout_constraintStart_toStartOf="@+id/greenSlider"
+        app:layout_constraintTop_toBottomOf="@+id/greenSlider" />
+
+    <SeekBar
+        android:id="@+id/blueSlider"
+        android:layout_width="262dp"
+        android:layout_height="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/redSlider"
+        app:layout_constraintStart_toStartOf="@+id/redSlider"
+        app:layout_constraintTop_toBottomOf="@+id/redSlider" />
+
+    <SeekBar
+        android:id="@+id/greenSlider"
+        android:layout_width="262dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/redSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Red"
+        app:layout_constraintBottom_toBottomOf="@+id/redSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toEndOf="@+id/redSlider"
+        app:layout_constraintTop_toTopOf="@+id/redSlider"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Blue"
+        app:layout_constraintBottom_toBottomOf="@+id/blueSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintStart_toEndOf="@+id/blueSlider"
+        app:layout_constraintTop_toTopOf="@+id/blueSlider"
+        app:layout_constraintVertical_bias="0.555" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Green"
+        app:layout_constraintBottom_toBottomOf="@+id/greenSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintStart_toEndOf="@+id/greenSlider"
+        app:layout_constraintTop_toTopOf="@+id/greenSlider"
+        app:layout_constraintVertical_bias="0.764" />
+
+</android.support.constraint.ConstraintLayout>
