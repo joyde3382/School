@@ -15,7 +15,7 @@ namespace Personkartotek_cs
         public string cityName { get; set; }
 
         public int zipCode { get; set; }
-        
+
 
     }
 }

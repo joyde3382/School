@@ -8,41 +8,47 @@ namespace Personkartotek_cs
 {
     class myCRUD
     {
-        public void Create(PersonDBContext db)
+        public void Create(PersonDBContext db, Person_Class person)
         {
 
-            PersonType mPersonType = new PersonType { pType = "Mother" };
-            db.pType.Add(mPersonType);
+            // Get data from database
 
-            GenericType AddressType = new GenericType { genericType = "Home" };
-            db.gType.Add(AddressType);
+            City Aarhus = db.city.FirstOrDefault(b => b.cityName == "Århus C");
 
-            GenericType PhoneCompany = new GenericType { genericType = "TDC" };
-            db.gType.Add(PhoneCompany);
+            PersonType Friend = db.pType.FirstOrDefault(v => v.pType == "Friend");
 
-            GenericType PhoneType = new GenericType { genericType = "Private" };
-            db.gType.Add(PhoneType);
+            GenericType Work = db.gType.FirstOrDefault(t => t.genericType == "Work");
 
-            City CityName = new City { cityName = "Ålborg C", zipCode = 9000 };
-            db.city.Add(CityName);
+            GenericType Home = db.gType.FirstOrDefault(t => t.genericType == "Home");
 
-            Address Address = new Address { streetAddress = "Ålborgvej 27b", countryRegion = "Aarhus amt", addressType = AddressType, cityAtAddress = CityName };
-            db.address.Add(Address);
+            GenericType TDC = db.gType.FirstOrDefault(t => t.genericType == "TDC");
 
-            ContactInfo PrivatePhone = new ContactInfo { phoneNumber = 12345678, phoneType = PhoneType, phoneCompany = PhoneCompany };
+            GenericType Private = db.gType.FirstOrDefault(t => t.genericType == "Private");
+
+            Address PrimaryAddress = new Address { streetAddress = "Ålborgvej 27b", countryRegion = "Aarhus amt", addressType = Home, cityAtAddress = Aarhus };
+            db.address.Add(PrimaryAddress);
+
+            Address AlternativeAddress = new Address { streetAddress = "Ålborgvej 10", countryRegion = "Aarhus amt", addressType = Work, cityAtAddress = Aarhus };
+            db.address.Add(AlternativeAddress);
+
+            ContactInfo PrivatePhone = new ContactInfo { phoneNumber = 12345678, phoneType = Private, phoneCompany = TDC };
             db.contactInfo.Add(PrivatePhone);
 
             Email Email = new Email { email = "Bodil555@gmail.com" };
             db.emailAddress.Add(Email);
 
             Note Note = new Note { note = "Bodil is a hurricane" };
+            db.note.Add(Note);
 
-            Person_Class Bodil = new Person_Class { fullName = "Bodil Storm", personType = mPersonType };
+            person = new Person_Class { fullName = "Bodil Storm", personType = Friend };
 
-            Bodil.Address.Add(Address);
-            Bodil.ContactInfo.Add(PrivatePhone);
-            Bodil.EmailAddress.Add(Email);
-            db.persons.Add(Bodil);
+            person.Address.Add(PrimaryAddress);
+            person.Address.Add(AlternativeAddress);
+            person.ContactInfo.Add(PrivatePhone);
+            person.EmailAddress.Add(Email);
+            person.personNote.Add(Note);
+
+            db.persons.Add(person);
             db.SaveChanges();
 
         }
@@ -56,12 +62,13 @@ namespace Personkartotek_cs
 
 
             int counter = 0;
-            
+
             foreach (var person in People)
             {
                 int emailCount = 0;
                 int addressCount = 0;
                 int phoneCount = 0;
+                int noteCount = 0;
 
                 Console.WriteLine($"\n {counter + 1}. person: \n");
                 counter++;
@@ -95,37 +102,154 @@ namespace Personkartotek_cs
 
                 Console.WriteLine("\n************************");
                 Console.WriteLine("Emails:");
-                
+
                 foreach (var email in person.EmailAddress)
                 {
                     emailCount++;
                     Console.WriteLine($"Email {emailCount}: {email.email}");
-                    
+
+                }
+
+                Console.WriteLine("\n************************");
+                Console.WriteLine("Notes:");
+
+                if (person.personNote.Count > 0)
+                {
+
+                    foreach (var note in person.personNote)
+                    {
+                        noteCount++;
+                        Console.WriteLine($"Note {noteCount}: {note.note}");
+
+                    }
                 }
             }
         }
 
-        public void Update(PersonDBContext db)
+        public void UpdatePersonName(PersonDBContext db, string personName, string personNewName)
         {
             List<Person_Class> people = db.persons.ToList<Person_Class>();
 
-            Person_Class mads = people.FirstOrDefault(m => m.fullName == "Bodil Storm");
+            Person_Class Person = people.FirstOrDefault(m => m.fullName == personName);
 
-            mads.fullName = "Bodil Lynild";
+            Person.fullName = personNewName;
+
+            db.SaveChanges();
+        }
+
+        public void UpdateEmail(PersonDBContext db, string currentEmail, string newEmail)
+        {
+            List<Email> emails = db.emailAddress.ToList<Email>();
+
+            Email email = emails.FirstOrDefault(m => m.email == currentEmail);
+
+            email.email = newEmail;
+
+            db.SaveChanges();
+        }
+
+        public void UpdateAlternativeAddress(PersonDBContext db, string currentAddress, string newAddress)
+        {
+            List<Address> alternativeAddress = db.address.ToList<Address>();
+
+            Address tempAddress = alternativeAddress.FirstOrDefault(m => m.streetAddress == currentAddress);
+
+            tempAddress.streetAddress = newAddress;
+
+            db.SaveChanges();
+        } 
+
+        public void UpdatePrimaryAddress(PersonDBContext db, string currentAddress, string newAddress)
+        {
+            List<Address> primaryAddress = db.address.ToList<Address>();
+
+            Address tempAddress = primaryAddress.FirstOrDefault(m => m.streetAddress == currentAddress);
+
+            tempAddress.streetAddress = newAddress;
+
+            db.SaveChanges();
+        }
+
+        public void UpdateContactInfo(PersonDBContext db, int currentNumber, int newNumber)
+        {
+            List<ContactInfo> ContactInfo = db.contactInfo.ToList<ContactInfo>();
+
+            ContactInfo newPhoneNumber = ContactInfo.FirstOrDefault(m => m.phoneNumber == currentNumber);
+
+            newPhoneNumber.phoneNumber = newNumber;
+
+            db.SaveChanges();
+        }
+
+        public void UpdateNote(PersonDBContext db, string personName, string newNote )
+        {
+            List<Note> Note = db.note.ToList<Note>();
+
+            List<Person_Class> person = db.persons.ToList<Person_Class>();
+
+            Person_Class personsNote = person.FirstOrDefault(m => m.fullName == personName);
+
+            Note NewNote = Note.FirstOrDefault(m => m.personId == personsNote.personId);
+
+            NewNote.note = newNote;
 
             db.SaveChanges();
         }
 
 
-
-        public void Delete(PersonDBContext db) {
+        public void DeletePerson(PersonDBContext db, string personName)
+        {
             // Find and delete Bodil 
-            Person_Class bodil = db.persons.FirstOrDefault(p => p.fullName == "Bodil Lynild");
+            Person_Class person = db.persons.FirstOrDefault(p => p.fullName == personName);
 
-            db.persons.Remove(bodil);
+            db.persons.Remove(person);
 
             db.SaveChanges();
         }
 
+        public void DeleteAlternativeAddress(PersonDBContext db, string address)
+        {
+            // Find and delete address 
+            Address tempAddress = db.address.FirstOrDefault(p => p.streetAddress == address);
+
+            db.address.Remove(tempAddress);
+
+            db.SaveChanges();
+        }
+
+        public void DeleteEmail(PersonDBContext db, string emailAddress)
+        {
+            // Find and delete Bodil 
+            Email tempEmail = db.emailAddress.FirstOrDefault(p => p.email == emailAddress);
+
+            db.emailAddress.Remove(tempEmail);
+
+            db.SaveChanges();
+        }
+
+        public void DeleteNote(PersonDBContext db, string personName)
+        {
+
+            List<Person_Class> person = db.persons.ToList<Person_Class>();
+            List<Note> Note = db.note.ToList<Note>();
+
+            Person_Class personsNote = person.FirstOrDefault(m => m.fullName == personName);
+
+            Note oldNote = Note.FirstOrDefault(m => m.personId == personsNote.personId);
+
+            db.note.Remove(oldNote);
+
+            db.SaveChanges();
+        }
+
+        public void DeleteContactInfo(PersonDBContext db, int number)
+        {
+            // Find and delete Bodil 
+            ContactInfo tempContactInfo = db.contactInfo.FirstOrDefault(p => p.phoneNumber == number);
+
+            db.contactInfo.Remove(tempContactInfo);
+
+            db.SaveChanges();
+        }
     }
 }

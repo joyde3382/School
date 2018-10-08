@@ -24,8 +24,8 @@
     <string name="MissingName">Sæt et navn</string>
     <string name="MissingPrice">Sæt en pris</string>
     <string name="MissingStock">Sæt en aktie</string>
-
-
-
+    <string name="nameHint">Skriv et aktienavn</string>
+    <string name="PriceHint">Sæt en aktiepris</string>
+    <string name="StockHint">Vælg antal aktier</string>
 
 </resources>

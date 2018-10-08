@@ -11,14 +11,15 @@ namespace Personkartotek_cs
     {
         [Key, Index(IsUnique = true)]
         public int contactId { get; set; }
-        
-       
-        [Index(IsUnique = true)]
-        public int phoneNumber { get; set; } 
-
-        public GenericType phoneType { get; set; }
 
         [Required]
-        public GenericType phoneCompany { get; set; }
+        public int personId { get; set; }
+
+        [Index(IsUnique = true)]
+        public int phoneNumber { get; set; }
+
+        public virtual GenericType phoneType { get; set; }
+
+        public virtual GenericType phoneCompany { get; set; }
     }
 }

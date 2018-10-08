@@ -1,10 +1,7 @@
 package com.example.jjy19.stockmonitor;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,19 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
+import com.example.jjy19.stockmonitor.Objects.Stock;
 
-public class OverviewActivity extends AppCompatActivity {
-
-    private static final String StockMessage = "stock";
-    int requestCode = 101;
+public class OverviewActivity extends SharedVariables {
 
     Button detailsButton;
-    TextView nameText;
-    TextView priceText;
+    TextView nameText, priceText;
     Stock newStock;
     ImageView sectorImage;
-    String languageToLoad;
 
 
     @Override
@@ -33,15 +25,14 @@ public class OverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
-        nameText = findViewById(R.id.overView_stockName);
-        priceText = findViewById(R.id.overView_stockPrice);
-        sectorImage = findViewById(R.id.overView_sectorPic);
-
+        // initialize ui elements
+        initUIElements();
 
         newStock = getIntent().getParcelableExtra(StockMessage);
+
+        // update the stock object (if phone is flipped/app is restarted)
         update(newStock);
 
-        detailsButton = findViewById(R.id.detailsBtn);
         detailsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,11 +41,6 @@ public class OverviewActivity extends AppCompatActivity {
         });
     }
 
-    private void goToDetailsActivity(){
-        Intent intent = new Intent(OverviewActivity.this, DetailsActivity.class);
-        intent.putExtra(StockMessage, newStock);
-        startActivityForResult(intent,requestCode);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -93,34 +79,22 @@ public class OverviewActivity extends AppCompatActivity {
         update(newStock);
     }
 
+    // Update is used to set text and image after a restart of the app, or a new stock is created
     private void update( Stock stock){
 
-        String curLanguage = Locale.getDefault().getDisplayLanguage();
         Resources res = getResources();
 
         if (stock == null) {
             Stock defaultStock = new Stock("N/A", 00, 0, "N/A");
             nameText.setText(defaultStock.getStockName());
 
-
-
             priceText.setText(String.format(res.getString(R.string.StockPrice), defaultStock.getStockPrice()));
-
-//            if (curLanguage.equals("dansk"))
-//                priceText.setText(String.format("Købt for: %.1f", defaultStock.getStockPrice()));
-//            else if (curLanguage.equals("English"))
-//                priceText.setText(String.format(res.getString(R.string.StockPrice), defaultStock.getStockPrice()));
 
             sectorImage.setImageResource(R.drawable.na);
         }
         else {
 
             priceText.setText(String.format(res.getString(R.string.StockPrice), stock.getStockPrice()));
-
-//            if (curLanguage.equals("dansk"))
-//                priceText.setText(String.format ("Købt for: %.1f", stock.getStockPrice()));
-//            else if(curLanguage.equals("English"))
-//                priceText.setText(String.format ("Purchased at: %.1f", stock.getStockPrice()));
 
             nameText.setText(stock.getStockName());
 
@@ -135,8 +109,16 @@ public class OverviewActivity extends AppCompatActivity {
         }
     }
 
-    private  void Toast(String message){
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-        toast.show();
+    private void goToDetailsActivity(){
+        Intent intent = new Intent(OverviewActivity.this, DetailsActivity.class);
+        intent.putExtra(StockMessage, newStock);
+        startActivityForResult(intent,requestCode);
+    }
+
+    private void initUIElements(){
+        nameText = findViewById(R.id.overView_stockName);
+        priceText = findViewById(R.id.overView_stockPrice);
+        sectorImage = findViewById(R.id.overView_sectorPic);
+        detailsButton = findViewById(R.id.detailsBtn);
     }
 }

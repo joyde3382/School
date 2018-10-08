@@ -52,21 +52,13 @@
   <ItemGroup>
     <Compile Include="City.cs" />
     <Compile Include="GenericType.cs" />
-    <Compile Include="Migrations\201810050951216_help.cs" />
-    <Compile Include="Migrations\201810050951216_help.Designer.cs">
-      <DependentUpon>201810050951216_help.cs</DependentUpon>
+    <Compile Include="Migrations\201810071501483_uniqueAddress.cs" />
+    <Compile Include="Migrations\201810071501483_uniqueAddress.Designer.cs">
+      <DependentUpon>201810071501483_uniqueAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810051113260_helpMe.cs" />
-    <Compile Include="Migrations\201810051113260_helpMe.Designer.cs">
-      <DependentUpon>201810051113260_helpMe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810051328502_helpMe1.cs" />
-    <Compile Include="Migrations\201810051328502_helpMe1.Designer.cs">
-      <DependentUpon>201810051328502_helpMe1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810051337237_helpMe2.cs" />
-    <Compile Include="Migrations\201810051337237_helpMe2.Designer.cs">
-      <DependentUpon>201810051337237_helpMe2.cs</DependentUpon>
+    <Compile Include="Migrations\201810071513264_uniqueAddress1.cs" />
+    <Compile Include="Migrations\201810071513264_uniqueAddress1.Designer.cs">
+      <DependentUpon>201810071513264_uniqueAddress1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="myCRUD.cs" />
@@ -89,17 +81,11 @@
     <Content Include="deleteData.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810050951216_help.resx">
-      <DependentUpon>201810050951216_help.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810071501483_uniqueAddress.resx">
+      <DependentUpon>201810071501483_uniqueAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051113260_helpMe.resx">
-      <DependentUpon>201810051113260_helpMe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051328502_helpMe1.resx">
-      <DependentUpon>201810051328502_helpMe1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051337237_helpMe2.resx">
-      <DependentUpon>201810051337237_helpMe2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810071513264_uniqueAddress1.resx">
+      <DependentUpon>201810071513264_uniqueAddress1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -51,7 +51,7 @@ namespace Personkartotek_cs
         public DbSet<Address> address { get; set; }
 
         public DbSet<ContactInfo> contactInfo { get; set; }
-    
+
         public DbSet<GenericType> gType { get; set; }
 
         public DbSet<PersonType> pType { get; set; }

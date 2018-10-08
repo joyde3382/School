@@ -12,7 +12,12 @@ namespace Personkartotek_cs
         [Key, Index(IsUnique = true)]
         public int emailId { get; set; }
 
-        [Required, Index(IsUnique = true), StringLength(64)]
+        [Required]
+        public int personId { get; set; }
+
+
+
+        [Index(IsUnique = true), StringLength(64)]
         public string email { get; set; }
     }
 }

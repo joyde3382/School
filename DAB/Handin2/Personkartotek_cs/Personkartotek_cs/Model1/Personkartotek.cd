@@ -1,88 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Personkartotek_cs.Person_Class">
-    <Position X="13.25" Y="2.75" Width="2" />
+  <Class Name="Personkartotek_cs.Note">
+    <Position X="9" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAACAAAIAAAAAAAAGIAAAAgAAAAA=</HashCode>
-      <FileName>Person_Class.cs</FileName>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAA=</HashCode>
+      <FileName>Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek_cs.ContactInfo">
+    <Position X="15.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAEAAAAAAAAAUAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>ContactInfo.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="personType" />
-      <Property Name="note" />
+      <Property Name="phoneType" />
     </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Address" />
-      <Property Name="EmailAddress" />
-      <Property Name="ContactInfo" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="Personkartotek_cs.Email">
-    <Position X="9.25" Y="3" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Email.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Class Name="Personkartotek_cs.Address">
-    <Position X="13" Y="5" Width="2.5" />
-    <AssociationLine Name="peopleAtAddress" Type="Personkartotek_cs.Person_Class">
+    <Position X="17.5" Y="8" Width="1.5" />
+    <AssociationLine Name="peopleAtAddress" Type="Personkartotek_cs.Person_Class" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="17.5" Y="8.336" />
+        <Point X="13.438" Y="8.336" />
+        <Point X="13.438" Y="7.973" />
+      </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.453" Y="0.175" />
+        <Position X="0.216" Y="0.853" />
       </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="addressType" Type="Personkartotek_cs.GenericType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.25" Y="8" />
+        <Point X="18.25" Y="7.404" />
+        <Point X="19.438" Y="7.404" />
+        <Point X="19.438" Y="7.029" />
+      </Path>
     </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAACAAAAABAAAAAABAAAAGAAAQA=</HashCode>
       <FileName>Address.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="addressType" />
       <Property Name="cityAtAddress" />
+      <Property Name="addressType" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="peopleAtAddress" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Personkartotek_cs.ContactInfo">
-    <Position X="18.5" Y="0.75" Width="1.5" />
-    <AssociationLine Name="phoneCompany" Type="Personkartotek_cs.GenericType">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.991" Y="0.218" />
-      </MemberNameLabel>
-    </AssociationLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAQAA=</HashCode>
-      <FileName>ContactInfo.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="phoneCompany" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Personkartotek_cs.Note">
-    <Position X="11.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
-      <FileName>Note.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Personkartotek_cs.City">
-    <Position X="13.75" Y="7" Width="1.5" />
+    <Position X="16" Y="10.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>City.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Personkartotek_cs.Email">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Personkartotek_cs.GenericType">
-    <Position X="17.25" Y="6.5" Width="1.5" />
+    <Position X="18.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>GenericType.cs</FileName>
-      <NewMemberFileName>genericType.cs</NewMemberFileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Personkartotek_cs.PersonType">
-    <Position X="16.75" Y="4" Width="1.5" />
+  <Class Name="Personkartotek_cs.Person_Class">
+    <Position X="12.5" Y="6.25" Width="1.5" />
+    <AssociationLine Name="Address" Type="Personkartotek_cs.Address" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.875" Y="7.973" />
+        <Point X="12.875" Y="8.734" />
+        <Point X="17.5" Y="8.734" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="personType" Type="Personkartotek_cs.PersonType" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="6.313" />
+        <Point X="14.375" Y="6.313" />
+        <Point X="14.375" Y="4.389" />
+        <Point X="16" Y="4.389" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAACAAAIAAAAAAAAGIAAAAgAAAAA=</HashCode>
+      <FileName>Person_Class.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="personType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Address" />
+      <Property Name="EmailAddress" />
+      <Property Name="ContactInfo" />
+      <Property Name="personNote" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.PersonType">
+    <Position X="16" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>PersonType.cs</FileName>
     </TypeIdentifier>
   </Class>

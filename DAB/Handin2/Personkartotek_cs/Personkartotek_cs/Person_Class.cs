@@ -14,18 +14,20 @@ namespace Personkartotek_cs
             Address = new List<Address>();
 
             EmailAddress = new List<Email>();
-            
+
             ContactInfo = new List<ContactInfo>();
+
+            personNote = new List<Note>();
         }
 
         [Key, Index(IsUnique = true)]
         public int personId { get; set; }
         public string fullName { get; set; }
 
-        
-        public PersonType personType { get; set; }
 
-        public Note personNote { get; set; } // needs fix
+        public virtual PersonType personType { get; set; }
+
+
 
         [Required]
         public virtual List<Address> Address { get; set; }
@@ -33,5 +35,7 @@ namespace Personkartotek_cs
         public virtual List<Email> EmailAddress { get; set; }
 
         public virtual List<ContactInfo> ContactInfo { get; set; }
+
+        public virtual List<Note> personNote { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="318dp"
+        android:layout_width="314dp"
         android:layout_height="219dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
@@ -25,7 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_weight="80"
             android:orientation="vertical">
 
             <TextView
@@ -71,15 +71,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_weight="20"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/edit_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="@string/nameHint"
                 android:inputType="textPersonName"
                 android:maxLength="15"
                 tools:layout_editor_absoluteX="56dp"
@@ -91,6 +92,7 @@
                 android:layout_height="40dp"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="@string/PriceHint"
                 android:inputType="numberDecimal"
                 android:maxLength="7"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -100,10 +102,11 @@
 
             <EditText
                 android:id="@+id/edit_stock"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="@string/StockHint"
                 android:inputType="numberSigned"
                 android:maxLength="7"
                 tools:layout_editor_absoluteX="56dp"

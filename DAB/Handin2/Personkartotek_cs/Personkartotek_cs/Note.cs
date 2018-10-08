@@ -13,6 +13,10 @@ namespace Personkartotek_cs
         [Key, Index(IsUnique = true)]
         public int noteId { get; set; }
 
+
+        [Required]
+        public int personId { get; set; }
+
         public string note { get; set; }       
     }
 }

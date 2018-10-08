@@ -2,49 +2,29 @@ package com.example.jjy19.stockmonitor;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-public class EditActivity extends AppCompatActivity {
+import com.example.jjy19.stockmonitor.Objects.Stock;
 
-    private static final String StockMessage = "stock";
+public class EditActivity extends SharedVariables {
+
     String sectorValue;
-
-    Button saveButton;
-    Button cancelButton;
-
-    EditText nameText;
-    EditText priceText;
-    EditText stockText;
-
-    RadioButton radioButton1;
-    RadioButton radioButton2;
-    RadioButton radioButton3;
-
-
+    Button saveButton, cancelButton;
+    EditText nameText, priceText, stockText;
+    RadioButton radioButton1, radioButton2, radioButton3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        saveButton = findViewById(R.id.saveBtn);
-        cancelButton = findViewById(R.id.backBtn);
-
-        nameText = findViewById(R.id.edit_name);
-        priceText = findViewById(R.id.edit_price);
-        stockText = findViewById(R.id.edit_stock);
-        // sectorText = findViewById(R.id.edit_sector);
-
-        radioButton1 = findViewById(R.id.sector_radio1);
-        radioButton2 = findViewById(R.id.sector_radio2);
-        radioButton3 = findViewById(R.id.sector_radio3);
+        // initialize UI elements
+        initUIElements();
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +42,7 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
+    // Save data from stock to object and parse it to Details activity
     private void saveStock(){
         Intent intent = new Intent(this, OverviewActivity.class);
 
@@ -95,6 +76,8 @@ public class EditActivity extends AppCompatActivity {
             Toast("Please pick a sector you slacker!");
             return;
         }
+
+        // Create new stock object with the input values from user
         Stock stock = new Stock(nameText.getText().toString(), Double.parseDouble(priceText.getText().toString()), Integer.parseInt(stockText.getText().toString()), sectorValue);
 
         intent.putExtra(StockMessage,stock);
@@ -105,8 +88,22 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
-    private  void Toast(String message){
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
-        toast.show();
+    private void initUIElements(){
+
+        // buttons
+        saveButton = findViewById(R.id.saveBtn);
+        cancelButton = findViewById(R.id.backBtn);
+
+        // editText
+        nameText = findViewById(R.id.edit_name);
+        priceText = findViewById(R.id.edit_price);
+        stockText = findViewById(R.id.edit_stock);
+
+        // Radiogroup
+        radioButton1 = findViewById(R.id.sector_radio1);
+        radioButton2 = findViewById(R.id.sector_radio2);
+        radioButton3 = findViewById(R.id.sector_radio3);
     }
+
+
 }

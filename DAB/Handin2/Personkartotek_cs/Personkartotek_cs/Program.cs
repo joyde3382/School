@@ -24,6 +24,7 @@ namespace Personkartotek_cs
                 }
 
                 Console.WriteLine("Default database");
+
                 newCRUD.Read(db);
 
                 Console.WriteLine("Press any key to create new person...");
@@ -34,31 +35,54 @@ namespace Personkartotek_cs
 
                 Console.WriteLine("Adding Bodil to database");
 
-                newCRUD.Create(db);
+                Person_Class Bodil = new Person_Class();
+
+                newCRUD.Create(db, Bodil);
                 newCRUD.Read(db);
 
                 Console.WriteLine("Press any key to give Bodil a new surname");
                 Console.ReadKey();
                 Console.Clear();
 
-                newCRUD.Update(db);
 
+
+                newCRUD.UpdatePersonName(db, "Bodil Storm", "Dronning Bodil");
+
+                newCRUD.UpdateEmail(db, "Bodil555@gmail.com", "BodilNewMail@gmail.com");
+
+                newCRUD.UpdateContactInfo(db, 12345678, 99995555);
+                newCRUD.UpdateNote(db, "Dronning Bodil", "Bodil just got a new note!");
+                newCRUD.UpdateNote(db, "Dronning Bodil", "Bodil just got a second note!");
+
+
+                newCRUD.Read(db);
+
+                Console.WriteLine("Press any key to delete elements of Bodil");
+                Console.ReadKey();
+                Console.Clear();
+
+
+                newCRUD.DeleteEmail(db, "BodilNewMail@gmail.com");
+                newCRUD.DeleteAlternativeAddress(db, "Ålborgvej 27b");
+                newCRUD.DeleteContactInfo(db, 99995555);
+                newCRUD.DeleteNote(db, "Dronning Bodil");
                 newCRUD.Read(db);
 
                 Console.WriteLine("Press any key to delete Bodil");
                 Console.ReadKey();
                 Console.Clear();
-                newCRUD.Delete(db);
+
+                newCRUD.DeletePerson(db, "Dronning Bodil");
                 newCRUD.Read(db);
 
             }
         }
         public void StartDatabase(PersonDBContext db)
         {
-            City århus = new City { cityName = "Århus", zipCode = 8200 };
+            City århus = new City { cityName = "Århus C", zipCode = 8200 };
             db.city.Add(århus);
 
-            City randers = new City { cityName = "Randers", zipCode = 8900 };
+            City randers = new City { cityName = "Randers C", zipCode = 8900 };
             db.city.Add(randers);
 
             PersonType Brother = new PersonType { pType = "Brother" };
