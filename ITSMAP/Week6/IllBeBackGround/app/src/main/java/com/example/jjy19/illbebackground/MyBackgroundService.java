@@ -1,6 +1,7 @@
 package com.example.jjy19.illbebackground;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
@@ -8,9 +9,9 @@ import android.util.Log;
 
 public class MyBackgroundService extends Service {
 
-
     public MyBackgroundService() {
     }
+    Context context = this;
     Thread worker;
     // LocalBroadcastManager myLocalBroadcast;
     @Override
@@ -30,13 +31,20 @@ public class MyBackgroundService extends Service {
             @Override
             public void run() {
                 try {
+
                     while(true) {
                         Log.d("MyBackgroundService", "Sleeping for 1 second");
                         Thread.sleep(1000);
 
-                        Intent intent = new Intent("myLocalBroadcast");
-                        intent.putExtra()
-                        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
+                        Intent intent = new Intent();
+                        intent.setAction("filter_string");
+                        intent.putExtra("data","Notice me senpai!");
+
+                        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+                        // Intent intent = new Intent("myLocalBroadcast");
+                        // intent.putExtra()
+                        // LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
                     }
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block

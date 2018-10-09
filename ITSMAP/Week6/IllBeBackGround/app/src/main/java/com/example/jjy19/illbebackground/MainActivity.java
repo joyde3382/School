@@ -1,12 +1,17 @@
 package com.example.jjy19.illbebackground;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+        lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
+
 
         startButton = findViewById(R.id.startServiceBtn);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +45,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent != null) {
+                String str = intent.getStringExtra("data");
+
+                Toast(str);
+                // get all your data from intent and do what you want
+            }
+        }
+    };
+
+    // simple toast function
+    public void Toast(String message){
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     // Logging of the life cycles

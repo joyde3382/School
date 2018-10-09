@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Overview Activity strings -->
+    <string name="app_name">StockMonitor</string>
+    <string name="StockType">Facebook</string>
+    <string name="StockTag">My Stock:</string>
+    <string name="StockPrice">Purchased at: %1$3.2f</string>
+    <string name="OverviewButton">Details</string>
+
+
+    <!-- Details Activity strings -->
+    <string name="StockName">Name:</string>
+    <string name="StockTag2">Price:</string>
+    <string name="NumberOfStocks">#Stocks:</string>
+    <string name="Sector">Sector:</string>
+    <string name="BackButton">Back</string>
+    <string name="EditButton">Edit</string>
+
+    <!-- Edit Activity strings -->
+    <string name="CheckBox1">Technology</string>
+    <string name="CheckBox2">Healthcare</string>
+    <string name="CheckBox3">Basic Materials</string>
+    <string name="CancelButton">Cancel</string>
+    <string name="SaveButton">Save</string>
+    <string name="MissingName">Please set a name</string>
+    <string name="MissingPrice">Please set a price</string>
+    <string name="MissingStock">Please set a stock</string>
+    <string name="nameHint">Write a stock name</string>
+    <string name="PriceHint">Set a stock price</string>
+    <string name="StockHint">Pick number of stocks</string>
+
+</resources>

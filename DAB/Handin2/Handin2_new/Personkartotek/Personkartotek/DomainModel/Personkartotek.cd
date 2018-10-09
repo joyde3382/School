@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Personkartotek.DomainModel.Note">
+    <Position X="9" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>DomainModel\Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek.DomainModel.ContactInfo">
+    <Position X="12.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAEAAAAAAAAAUAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainModel\ContactInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek.DomainModel.Address">
+    <Position X="19" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAGAAAQA=</HashCode>
+      <FileName>DomainModel\Address.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="cityAtAddress" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="peopleAtAddress" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek.DomainModel.City">
+    <Position X="19" Y="9.25" Width="1.5" />
+    <AssociationLine Name="addresses" Type="Personkartotek.DomainModel.Address">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.083" Y="0.158" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEgAQAAQAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainModel\City.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="addresses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek.DomainModel.Email">
+    <Position X="12.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DomainModel\Email.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personkartotek.DomainModel.Person">
+    <Position X="12.5" Y="6.25" Width="1.5" />
+    <AssociationLine Name="AlternativeAddress" Type="Personkartotek.DomainModel.AA">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.067" Y="-0.255" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAABAACAAAIAAAAAAAAGIAAAAgAAAAA=</HashCode>
+      <FileName>DomainModel\Person.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="EmailAddress" />
+      <Property Name="ContactInfo" />
+      <Property Name="personNote" />
+      <Property Name="AlternativeAddress" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Personkartotek.DomainModel.AA">
+    <Position X="16" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAABAAABEAAAAA=</HashCode>
+      <FileName>DomainModel\AA.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="attachedAddress" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="attachedPerson" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="8.83" />
+</ClassDiagram>
