@@ -50,25 +50,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="City.cs" />
-    <Compile Include="GenericType.cs" />
-    <Compile Include="Migrations\201810071501483_uniqueAddress.cs" />
-    <Compile Include="Migrations\201810071501483_uniqueAddress.Designer.cs">
-      <DependentUpon>201810071501483_uniqueAddress.cs</DependentUpon>
+    <Compile Include="DomainModel\AlternativeAddress.cs" />
+    <Compile Include="DomainModel\City.cs" />
+    <Compile Include="Infrastructure\CRUD.cs" />
+    <Compile Include="Migrations\201810102009235_addingCruds.cs" />
+    <Compile Include="Migrations\201810102009235_addingCruds.Designer.cs">
+      <DependentUpon>201810102009235_addingCruds.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810071513264_uniqueAddress1.cs" />
-    <Compile Include="Migrations\201810071513264_uniqueAddress1.Designer.cs">
-      <DependentUpon>201810071513264_uniqueAddress1.cs</DependentUpon>
+    <Compile Include="Migrations\201810102011131_addingCruds1.cs" />
+    <Compile Include="Migrations\201810102011131_addingCruds1.Designer.cs">
+      <DependentUpon>201810102011131_addingCruds1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="myCRUD.cs" />
-    <Compile Include="Note.cs" />
-    <Compile Include="PersonDBContext.cs" />
-    <Compile Include="Address.cs" />
-    <Compile Include="Email.cs" />
-    <Compile Include="PersonType.cs" />
-    <Compile Include="Person_Class.cs" />
-    <Compile Include="ContactInfo.cs" />
+    <Compile Include="DomainModel\Note.cs" />
+    <Compile Include="DomainModel\PersonDBContext.cs" />
+    <Compile Include="DomainModel\Address.cs" />
+    <Compile Include="DomainModel\Email.cs" />
+    <Compile Include="DomainModel\Person.cs" />
+    <Compile Include="DomainModel\ContactInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,11 +81,11 @@
     <Content Include="deleteData.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810071501483_uniqueAddress.resx">
-      <DependentUpon>201810071501483_uniqueAddress.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810102009235_addingCruds.resx">
+      <DependentUpon>201810102009235_addingCruds.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810071513264_uniqueAddress1.resx">
-      <DependentUpon>201810071513264_uniqueAddress1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810102011131_addingCruds1.resx">
+      <DependentUpon>201810102011131_addingCruds1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

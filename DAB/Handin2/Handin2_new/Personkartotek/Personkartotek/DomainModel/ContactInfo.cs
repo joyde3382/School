@@ -7,7 +7,7 @@ namespace Personkartotek.DomainModel
 {
     public class ContactInfo
     {
-        public virtual int contactId { get; set; }
+        public virtual long contactId { get; set; }
 
         public virtual int phoneNumber { get; set; }
 

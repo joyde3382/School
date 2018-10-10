@@ -7,7 +7,7 @@ namespace Personkartotek.DomainModel
 {
     public class Email
     {
-        public virtual int emailId { get; set; }
+        public virtual long emailId { get; set; }
 
         public virtual string email { get; set; }
     }

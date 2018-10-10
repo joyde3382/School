@@ -1,112 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Personkartotek_cs.Note">
+  <Class Name="Personkartotek_cs.DomainModel.Note">
     <Position X="9" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAA=</HashCode>
-      <FileName>Note.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Personkartotek_cs.ContactInfo">
-    <Position X="15.5" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAEAAAAAAAAAUAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>ContactInfo.cs</FileName>
+      <FileName>DomainModel\Note.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="phoneType" />
+      <Property Name="personId" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Personkartotek_cs.Address">
-    <Position X="17.5" Y="8" Width="1.5" />
-    <AssociationLine Name="peopleAtAddress" Type="Personkartotek_cs.Person_Class" FixedFromPoint="true" FixedToPoint="true">
+  <Class Name="Personkartotek_cs.DomainModel.ContactInfo">
+    <Position X="16" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAEAAAAAAAAAUAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>DomainModel\ContactInfo.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="personId" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Personkartotek_cs.DomainModel.Address">
+    <Position X="16.5" Y="7" Width="1.5" />
+    <AssociationLine Name="personId" Type="Personkartotek_cs.DomainModel.Person" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="17.5" Y="8.336" />
-        <Point X="13.438" Y="8.336" />
-        <Point X="13.438" Y="7.973" />
+        <Point X="16.5" Y="7.984" />
+        <Point X="14" Y="8.173" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.216" Y="0.853" />
+        <Position X="-1.01" Y="-0.332" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="addressType" Type="Personkartotek_cs.GenericType" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="18.25" Y="8" />
-        <Point X="18.25" Y="7.404" />
-        <Point X="19.438" Y="7.404" />
-        <Point X="19.438" Y="7.029" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAABAAAAAABAAAAGAAAQA=</HashCode>
-      <FileName>Address.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAGAAAAA=</HashCode>
+      <FileName>DomainModel\Address.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="cityAtAddress" />
-      <Property Name="addressType" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="peopleAtAddress" />
+      <Property Name="personId" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Personkartotek_cs.City">
-    <Position X="16" Y="10.25" Width="1.5" />
+  <Class Name="Personkartotek_cs.DomainModel.City">
+    <Position X="19.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>City.cs</FileName>
+      <HashCode>AAEgAQAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>DomainModel\City.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="addressId" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Personkartotek_cs.Email">
+  <Class Name="Personkartotek_cs.DomainModel.Email">
     <Position X="12.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
-      <FileName>Email.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAgAgAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>DomainModel\Email.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Personkartotek_cs.GenericType">
-    <Position X="18.75" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
-      <FileName>GenericType.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Personkartotek_cs.Person_Class">
+  <Class Name="Personkartotek_cs.DomainModel.Person">
     <Position X="12.5" Y="6.25" Width="1.5" />
-    <AssociationLine Name="Address" Type="Personkartotek_cs.Address" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Address" Type="Personkartotek_cs.DomainModel.Address" FixedToPoint="true">
       <Path>
-        <Point X="12.875" Y="7.973" />
-        <Point X="12.875" Y="8.734" />
-        <Point X="17.5" Y="8.734" />
+        <Point X="14" Y="7.438" />
+        <Point X="16.5" Y="7.438" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="personType" Type="Personkartotek_cs.PersonType" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="ContactInfo" Type="Personkartotek_cs.DomainModel.ContactInfo" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="14" Y="6.313" />
-        <Point X="14.375" Y="6.313" />
-        <Point X="14.375" Y="4.389" />
-        <Point X="16" Y="4.389" />
+        <Point X="14" Y="6.628" />
+        <Point X="17.125" Y="6.628" />
+        <Point X="17.125" Y="5.907" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAACAAAIAAAAAAAAGIAAAAgAAAAA=</HashCode>
-      <FileName>Person_Class.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIAABAACAAAIAAAAAAAAGIAAAAkAAAAA=</HashCode>
+      <FileName>DomainModel\Person.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="personType" />
+      <Property Name="Address" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Address" />
+      <Property Name="AlternativeAddress" />
       <Property Name="EmailAddress" />
       <Property Name="ContactInfo" />
       <Property Name="personNote" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Personkartotek_cs.PersonType">
-    <Position X="16" Y="3.75" Width="1.5" />
+  <Class Name="Personkartotek_cs.DomainModel.AlternativeAddress">
+    <Position X="12.75" Y="10.75" Width="1.5" />
+    <AssociationLine Name="attachedAddress" Type="Personkartotek_cs.DomainModel.Address" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.156" Y="10.75" />
+        <Point X="14.156" Y="10.375" />
+        <Point X="17.125" Y="10.375" />
+        <Point X="17.125" Y="8.279" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
-      <FileName>PersonType.cs</FileName>
+      <HashCode>ABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAABAAABAAAAAA=</HashCode>
+      <FileName>DomainModel\AlternativeAddress.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="attachedAddress" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="attachedPerson" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="8.83" />
 </ClassDiagram>

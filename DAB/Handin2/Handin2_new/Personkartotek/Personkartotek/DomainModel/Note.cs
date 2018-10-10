@@ -7,7 +7,7 @@ namespace Personkartotek.DomainModel
 {
     public class Note
     {
-        public virtual int noteId { get; set; }
+        public virtual long noteId { get; set; }
 
         public virtual string note { get; set; }       
     }

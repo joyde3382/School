@@ -1,0 +1,111 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\21520848468f4146d0d61de303f230e6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\23fb67955b192750d12f12ff4624b53e\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\b07d2f684c586050b074654322baf351\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\19742535864f8ebefc413826d0d70c48\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bd59c3e9361396a62d184534e0c8ccca\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\8b11c6091209476d85848adf8b7474dd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\560949fbb0789f885a395bd5123cd8fb\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\425eb34dee6a16272488e83d1bec22be\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\268939d6a2ed78cbf95b3930a8e635c2\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\588fc682ffd8d49c3e057bc42a841e38\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\18d6b112df09187eed0f0b67e9355816\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\7c1b3da17ec3fb22f79f23fac8fc37c8\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+	package
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:1-23:12
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:5:5-21:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\23fb67955b192750d12f12ff4624b53e\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\23fb67955b192750d12f12ff4624b53e\AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.example.jjy19.stockmonitor.OverviewActivity
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:12:19-51
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:16:27-74
+activity#com.example.jjy19.stockmonitor.DetailsActivity
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:19:9-53
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:19:19-50
+activity#com.example.jjy19.stockmonitor.EditActivity
+ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:20:9-59
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml:20:19-47
+uses-sdk
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\21520848468f4146d0d61de303f230e6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\21520848468f4146d0d61de303f230e6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\23fb67955b192750d12f12ff4624b53e\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\23fb67955b192750d12f12ff4624b53e\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\b07d2f684c586050b074654322baf351\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\b07d2f684c586050b074654322baf351\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\19742535864f8ebefc413826d0d70c48\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\19742535864f8ebefc413826d0d70c48\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bd59c3e9361396a62d184534e0c8ccca\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bd59c3e9361396a62d184534e0c8ccca\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\8b11c6091209476d85848adf8b7474dd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\8b11c6091209476d85848adf8b7474dd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\560949fbb0789f885a395bd5123cd8fb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\560949fbb0789f885a395bd5123cd8fb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\425eb34dee6a16272488e83d1bec22be\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\425eb34dee6a16272488e83d1bec22be\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\268939d6a2ed78cbf95b3930a8e635c2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\268939d6a2ed78cbf95b3930a8e635c2\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\588fc682ffd8d49c3e057bc42a841e38\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\588fc682ffd8d49c3e057bc42a841e38\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\18d6b112df09187eed0f0b67e9355816\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\18d6b112df09187eed0f0b67e9355816\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\7c1b3da17ec3fb22f79f23fac8fc37c8\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\7c1b3da17ec3fb22f79f23fac8fc37c8\AndroidManifest.xml:20:5-44
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\School\ITSMAP\Assignment1\JonasYde_au551827__ITSMAP18_fall_Assignment1\StockMonitor\app\src\main\AndroidManifest.xml

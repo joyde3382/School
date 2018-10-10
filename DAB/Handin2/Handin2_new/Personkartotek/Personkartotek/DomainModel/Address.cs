@@ -7,7 +7,7 @@ namespace Personkartotek.DomainModel
 {
     public class Address
     {
-        public virtual int addressId { get; set; }
+        public virtual long addressId { get; set; }
 
         public virtual string streetAddress { get; set; }
 

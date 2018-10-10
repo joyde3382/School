@@ -20,7 +20,8 @@ namespace Personkartotek.DomainModel
             AlternativeAddress = new List<AA>();
         }
 
-        public virtual int personId { get; set; }
+        public virtual long PID { get; set; }
+        public virtual long addressId { get; set; }
         public virtual string fullName { get; set; }
 
 

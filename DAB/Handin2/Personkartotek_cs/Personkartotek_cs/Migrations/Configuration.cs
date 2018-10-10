@@ -3,16 +3,17 @@ namespace Personkartotek_cs.Migrations
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using Personkartotek_cs.DomainModel;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Personkartotek_cs.PersonDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PersonDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Personkartotek_cs.PersonDBContext context)
+        protected override void Seed(PersonDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 
