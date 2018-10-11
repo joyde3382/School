@@ -49,11 +49,11 @@ namespace Personkartotek_cs.Infrastruture
 
 
 
-            string insertStringParam = @"INSERT INTO [Person] (fullName, personType)
+            string insertStringParam = @"INSERT INTO [Person] (fullName, personType, addressId)
 
                                                     OUTPUT INSERTED.personId  
 
-                                                    VALUES (@fullName, @personType)";
+                                                    VALUES (@fullName, @personType, @addressId)";
 
 
 
@@ -66,7 +66,7 @@ namespace Personkartotek_cs.Infrastruture
 
                 cmd.Parameters.AddWithValue("@personType", mPerson.personType);
 
-                cmd.Parameters.AddWithValue("@Address_addressId", mPerson.Address.addressId);
+                cmd.Parameters.AddWithValue("@addressId", mPerson.Address.addressId);
 
                 mPerson.personId = (int)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record
 
@@ -119,7 +119,7 @@ namespace Personkartotek_cs.Infrastruture
 
                @"UPDATE Person
 
-                        SET fullName= @fullName, personType = @personType, Address_addressId = @Address_addressId
+                        SET fullName= @fullName, personType = @personType
                         WHERE personId = @personId";
 
 
@@ -134,7 +134,7 @@ namespace Personkartotek_cs.Infrastruture
 
                 cmd.Parameters.AddWithValue("@personType", mPerson.personType);
 
-                cmd.Parameters.AddWithValue("@Address_addressId", mPerson.Address.addressId);
+                //cmd.Parameters.AddWithValue("@addressId", mPerson.Address.addressId);
 
                 cmd.Parameters.AddWithValue("@personId", mPerson.personId);
 
@@ -187,7 +187,7 @@ namespace Personkartotek_cs.Infrastruture
                 cmd.Parameters.AddWithValue("@streetAddress", mAddress.streetAddress);
 
                 cmd.Parameters.AddWithValue("@cityAtAddress_cityId", mAddress.cityAtAddress.cityId);
-
+ 
                 mAddress.addressId = (int)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record
 
             }
@@ -246,8 +246,6 @@ namespace Personkartotek_cs.Infrastruture
 
 
         /**************** City CRUD ****************/
-
-
         public void AddCity(ref City mCity)
         {
 

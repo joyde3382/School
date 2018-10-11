@@ -3,7 +3,7 @@ namespace Personkartotek_cs.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addingCruds : DbMigration
+    public partial class fromLaptop : DbMigration
     {
         public override void Up()
         {
@@ -17,7 +17,6 @@ namespace Personkartotek_cs.Migrations
                     })
                 .PrimaryKey(t => t.addressId)
                 .ForeignKey("dbo.City", t => t.cityAtAddress_cityId, cascadeDelete: true)
-                .Index(t => t.addressId, unique: true)
                 .Index(t => t.cityAtAddress_cityId);
             
             CreateTable(
@@ -143,7 +142,6 @@ namespace Personkartotek_cs.Migrations
             DropIndex("dbo.Person", new[] { "personId" });
             DropIndex("dbo.City", new[] { "cityId" });
             DropIndex("dbo.Address", new[] { "cityAtAddress_cityId" });
-            DropIndex("dbo.Address", new[] { "addressId" });
             DropTable("dbo.AlternativeAddressPersons");
             DropTable("dbo.Note");
             DropTable("dbo.Email");

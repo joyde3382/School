@@ -22,15 +22,6 @@
   </Class>
   <Class Name="Personkartotek_cs.DomainModel.Address">
     <Position X="16.5" Y="7" Width="1.5" />
-    <AssociationLine Name="personId" Type="Personkartotek_cs.DomainModel.Person" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="16.5" Y="7.984" />
-        <Point X="14" Y="8.173" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.01" Y="-0.332" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAEAAAAAGAAAAA=</HashCode>
       <FileName>DomainModel\Address.cs</FileName>
@@ -38,9 +29,6 @@
     <ShowAsAssociation>
       <Property Name="cityAtAddress" />
     </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="personId" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Personkartotek_cs.DomainModel.City">
     <Position X="19.75" Y="7.75" Width="1.5" />
@@ -63,8 +51,8 @@
     <Position X="12.5" Y="6.25" Width="1.5" />
     <AssociationLine Name="Address" Type="Personkartotek_cs.DomainModel.Address" FixedToPoint="true">
       <Path>
-        <Point X="14" Y="7.438" />
-        <Point X="16.5" Y="7.438" />
+        <Point X="14" Y="7.503" />
+        <Point X="16.5" Y="7.503" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="ContactInfo" Type="Personkartotek_cs.DomainModel.ContactInfo" FixedFromPoint="true" FixedToPoint="true">
@@ -95,7 +83,7 @@
         <Point X="14.156" Y="10.75" />
         <Point X="14.156" Y="10.375" />
         <Point X="17.125" Y="10.375" />
-        <Point X="17.125" Y="8.279" />
+        <Point X="17.125" Y="8.468" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>

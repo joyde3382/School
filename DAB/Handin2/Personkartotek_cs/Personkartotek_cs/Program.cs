@@ -31,6 +31,8 @@ namespace Personkartotek_cs
 
                 Person p = new Person() { personId = 1 };
 
+                Address blankAddress = new Address() { addressId = 1 };
+
                 Person Jens = new Person() { fullName = "Jens Jensen", personType = "Friend", Address = null, EmailAddress = new List<Email>() };
 
                 Person Otto = new Person() { fullName = "Otto Ottossen", personType = "Brother", Address = null };
@@ -50,16 +52,25 @@ namespace Personkartotek_cs
                 JensAddress.personId.Add(Jens);
 
                 Otto.Address = OttosAddress;
-                OttosAddress.personId = new List<Person>();
-                OttosAddress.personId.Add(Otto);
+                //OttosAddress.personId = new List<Person>();
+                //OttosAddress.personId.Add(Otto);
+
+
+                myCRUD.AddCity(ref randers);
+                JensAddress.cityAtAddress = randers;
+                OttosAddress.cityAtAddress = randers;
+
+
+                myCRUD.AddAddress(ref JensAddress);
+                myCRUD.AddAddress(ref OttosAddress);
+
+                Jens.Address = JensAddress;
 
                 myCRUD.AddPerson(ref Jens);
                 myCRUD.AddPerson(ref Otto);
 
-                myCRUD.AddCity(ref randers);
-                myCRUD.AddAddress(ref JensAddress);
-                myCRUD.AddAddress(ref OttosAddress);
                 myCRUD.AddEmail(ref JensEmail);
+
 
                 myCRUD.UpdatePerson(ref Jens);
                 myCRUD.UpdatePerson(ref Otto);

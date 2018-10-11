@@ -53,13 +53,9 @@
     <Compile Include="DomainModel\AlternativeAddress.cs" />
     <Compile Include="DomainModel\City.cs" />
     <Compile Include="Infrastructure\CRUD.cs" />
-    <Compile Include="Migrations\201810102009235_addingCruds.cs" />
-    <Compile Include="Migrations\201810102009235_addingCruds.Designer.cs">
-      <DependentUpon>201810102009235_addingCruds.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810102011131_addingCruds1.cs" />
-    <Compile Include="Migrations\201810102011131_addingCruds1.Designer.cs">
-      <DependentUpon>201810102011131_addingCruds1.cs</DependentUpon>
+    <Compile Include="Migrations\201810111241243_fromLaptop.cs" />
+    <Compile Include="Migrations\201810111241243_fromLaptop.Designer.cs">
+      <DependentUpon>201810111241243_fromLaptop.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="myCRUD.cs" />
@@ -81,11 +77,8 @@
     <Content Include="deleteData.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810102009235_addingCruds.resx">
-      <DependentUpon>201810102009235_addingCruds.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810102011131_addingCruds1.resx">
-      <DependentUpon>201810102011131_addingCruds1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810111241243_fromLaptop.resx">
+      <DependentUpon>201810111241243_fromLaptop.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

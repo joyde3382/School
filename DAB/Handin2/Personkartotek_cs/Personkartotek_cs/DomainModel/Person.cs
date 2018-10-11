@@ -30,10 +30,8 @@ namespace Personkartotek_cs.DomainModel
         public virtual string personType { get; set; }
 
         
-        public virtual int? addressId { get; set; }
+        public virtual int addressId { get; set; }
 
-
-        //[Required]
         public virtual Address Address { get; set; }
 
         public virtual List<AlternativeAddress> AlternativeAddress { get; set; }

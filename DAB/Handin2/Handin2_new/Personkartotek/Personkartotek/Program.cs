@@ -20,15 +20,15 @@ namespace Personkartotek
 
             City randers = new City() { cityName = "Randers C", zipCode = 8900, countryRegion = "Denmark", addresses = new List<Address>() };
 
-            Address JensAddress = new Address { streetAddress = "Randersvej 27b", cityAtAddress = randers, peopleAtAddress = new List<Person>() };
+            Address JensAddress = new Address { streetAddress = "Randersvej 27b", cityAtAddress = randers, peopleAtAddress = Jens };
 
             //Jens.Address = JensAddress;
 
             randers.addresses = new List<Address>();
             randers.addresses.Add(JensAddress);
 
-            JensAddress.peopleAtAddress = new List<Person>();
-            JensAddress.peopleAtAddress.Add(Jens);
+            //JensAddress.peopleAtAddress = new List<Person>();
+            //JensAddress.peopleAtAddress.Add(Jens);
 
             
 

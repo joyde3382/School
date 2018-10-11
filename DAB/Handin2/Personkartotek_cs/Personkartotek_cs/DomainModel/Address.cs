@@ -10,11 +10,12 @@ namespace Personkartotek_cs.DomainModel
     [Table("Address")]
     public class Address
     {
-        [Key, Index(IsUnique = true)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int addressId { get; set; }
 
         public virtual string streetAddress { get; set; }
 
+        [Required]
         public virtual List<Person> personId { get; set; }
 
         [Required]
