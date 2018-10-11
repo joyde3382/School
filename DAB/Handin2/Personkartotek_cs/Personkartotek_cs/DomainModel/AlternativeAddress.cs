@@ -13,9 +13,9 @@ namespace Personkartotek_cs.DomainModel
         public virtual string addressType { get; set; }
 
         [Key, Index(IsUnique = true)]
-        public virtual long AAId { get; set; }
+        public virtual int AAId { get; set; }
 
-        public virtual System.Collections.Generic.List<Person> attachedPerson { get; set; }
+        public virtual List<Person> attachedPerson { get; set; }
 
         public virtual Address attachedAddress { get; set; }
     }

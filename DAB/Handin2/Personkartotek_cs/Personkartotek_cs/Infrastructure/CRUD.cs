@@ -244,6 +244,38 @@ namespace Personkartotek_cs.Infrastruture
 
         }
 
+        /**************** Alternative Address CRUD ****************/
+        public void AddAlternativeAddress(ref AlternativeAddress mAAddress)
+        {
+
+            // prepare command string using paramters in string and returning the given identity 
+
+
+            foreach (var a in mAAddress.attachedPerson)
+            {
+
+                string insertStringParam = @"INSERT INTO [AlternativeAddressPersons] (Person_personId, AlternativeAddress_AAId)
+
+                                                    VALUES (@personId, @AAId)";
+
+
+
+                using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+
+                {
+
+                    // Get your parameters ready                    
+
+                    cmd.Parameters.AddWithValue("@personId", a.personId);
+
+                    cmd.Parameters.AddWithValue("@AAId", mAAddress.AAId);
+
+                    var id = (int)cmd.ExecuteNonQuery(); //Returns the identity of the new tuple/record
+
+                }
+            }
+
+        }
 
         /**************** City CRUD ****************/
         public void AddCity(ref City mCity)

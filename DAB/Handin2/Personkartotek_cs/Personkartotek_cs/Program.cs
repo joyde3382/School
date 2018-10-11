@@ -41,6 +41,10 @@ namespace Personkartotek_cs
 
                 Address JensAddress = new Address { streetAddress = "Randersvej 27b", cityAtAddress = randers, personId = new List<Person>() };
 
+                Address JensAAddress = new Address { streetAddress = "Aarhusvej 2", cityAtAddress = randers, personId = new List<Person>() };
+
+                AlternativeAddress JensAlternativeAddress = new AlternativeAddress { attachedAddress = JensAAddress, attachedPerson = new List<Person>(), addressType = "Work"};
+
                 Address OttosAddress = new Address { streetAddress = "Randersvej 10", cityAtAddress = randers, personId = new List<Person>() };
 
                 Email JensEmail = new Email { email = "JensEmail@gmail.com" , person = Jens };
@@ -50,6 +54,13 @@ namespace Personkartotek_cs
                 Jens.EmailAddress.Add(JensEmail);
                 JensAddress.personId = new List<Person>();
                 JensAddress.personId.Add(Jens);
+                JensAAddress.personId.Add(Jens);
+
+                JensAlternativeAddress.attachedPerson = new List<Person>();
+                JensAlternativeAddress.attachedPerson.Add(Jens);
+                JensAlternativeAddress.attachedAddress = JensAAddress;
+                Jens.AlternativeAddress = new List<AlternativeAddress>();
+                Jens.AlternativeAddress.Add(JensAlternativeAddress);
 
                 Otto.Address = OttosAddress;
                 //OttosAddress.personId = new List<Person>();
@@ -59,11 +70,11 @@ namespace Personkartotek_cs
                 myCRUD.AddCity(ref randers);
                 JensAddress.cityAtAddress = randers;
                 OttosAddress.cityAtAddress = randers;
-
+                JensAAddress.cityAtAddress = randers;
 
                 myCRUD.AddAddress(ref JensAddress);
                 myCRUD.AddAddress(ref OttosAddress);
-
+                myCRUD.AddAddress(ref JensAAddress);
                 Jens.Address = JensAddress;
 
                 myCRUD.AddPerson(ref Jens);
@@ -71,6 +82,7 @@ namespace Personkartotek_cs
 
                 myCRUD.AddEmail(ref JensEmail);
 
+                myCRUD.AddAlternativeAddress(ref JensAlternativeAddress);
 
                 myCRUD.UpdatePerson(ref Jens);
                 myCRUD.UpdatePerson(ref Otto);
