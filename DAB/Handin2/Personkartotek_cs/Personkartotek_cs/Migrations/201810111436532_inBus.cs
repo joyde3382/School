@@ -3,7 +3,7 @@ namespace Personkartotek_cs.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class fromLaptop : DbMigration
+    public partial class inBus : DbMigration
     {
         public override void Up()
         {
@@ -49,13 +49,12 @@ namespace Personkartotek_cs.Migrations
                 "dbo.AlternativeAddress",
                 c => new
                     {
-                        AAId = c.Long(nullable: false, identity: true),
+                        AAId = c.Int(nullable: false, identity: true),
                         addressType = c.String(),
                         attachedAddress_addressId = c.Int(),
                     })
                 .PrimaryKey(t => t.AAId)
                 .ForeignKey("dbo.Address", t => t.attachedAddress_addressId)
-                .Index(t => t.AAId, unique: true)
                 .Index(t => t.attachedAddress_addressId);
             
             CreateTable(
@@ -105,7 +104,7 @@ namespace Personkartotek_cs.Migrations
                 "dbo.AlternativeAddressPersons",
                 c => new
                     {
-                        AlternativeAddress_AAId = c.Long(nullable: false),
+                        AlternativeAddress_AAId = c.Int(nullable: false),
                         Person_personId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.AlternativeAddress_AAId, t.Person_personId })
@@ -137,7 +136,6 @@ namespace Personkartotek_cs.Migrations
             DropIndex("dbo.ContactInfo", new[] { "phoneNumber" });
             DropIndex("dbo.ContactInfo", new[] { "contactId" });
             DropIndex("dbo.AlternativeAddress", new[] { "attachedAddress_addressId" });
-            DropIndex("dbo.AlternativeAddress", new[] { "AAId" });
             DropIndex("dbo.Person", new[] { "addressId" });
             DropIndex("dbo.Person", new[] { "personId" });
             DropIndex("dbo.City", new[] { "cityId" });

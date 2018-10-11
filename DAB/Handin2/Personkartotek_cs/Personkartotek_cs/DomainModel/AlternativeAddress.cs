@@ -12,7 +12,7 @@ namespace Personkartotek_cs.DomainModel
     {
         public virtual string addressType { get; set; }
 
-        [Key, Index(IsUnique = true)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int AAId { get; set; }
 
         public virtual List<Person> attachedPerson { get; set; }

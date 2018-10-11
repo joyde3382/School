@@ -50,6 +50,8 @@ namespace Personkartotek_cs.DomainModel
 
         public DbSet<Address> address { get; set; }
 
+        public DbSet<AlternativeAddress> alternativeAddress { get; set; }
+
         public DbSet<ContactInfo> contactInfo { get; set; }
 
         public DbSet<Note> note { get; set; }

@@ -50,39 +50,32 @@ namespace Personkartotek_cs
                 Email JensEmail = new Email { email = "JensEmail@gmail.com" , person = Jens };
 
                 Jens.Address = JensAddress;
-                Jens.EmailAddress = new List<Email>();
                 Jens.EmailAddress.Add(JensEmail);
-                JensAddress.personId = new List<Person>();
                 JensAddress.personId.Add(Jens);
                 JensAAddress.personId.Add(Jens);
 
-                JensAlternativeAddress.attachedPerson = new List<Person>();
                 JensAlternativeAddress.attachedPerson.Add(Jens);
                 JensAlternativeAddress.attachedAddress = JensAAddress;
-                Jens.AlternativeAddress = new List<AlternativeAddress>();
                 Jens.AlternativeAddress.Add(JensAlternativeAddress);
 
-                Otto.Address = OttosAddress;
-                //OttosAddress.personId = new List<Person>();
-                //OttosAddress.personId.Add(Otto);
+                //Otto.Address = OttosAddress;
 
+                JensAddress.cityAtAddress = randers;
+                JensAAddress.cityAtAddress = randers;
+                //OttosAddress.cityAtAddress = randers;
 
                 myCRUD.AddCity(ref randers);
-                JensAddress.cityAtAddress = randers;
-                OttosAddress.cityAtAddress = randers;
-                JensAAddress.cityAtAddress = randers;
-
                 myCRUD.AddAddress(ref JensAddress);
-                myCRUD.AddAddress(ref OttosAddress);
+                //myCRUD.AddAddress(ref OttosAddress);
                 myCRUD.AddAddress(ref JensAAddress);
-                Jens.Address = JensAddress;
-
+                
                 myCRUD.AddPerson(ref Jens);
-                myCRUD.AddPerson(ref Otto);
+                //myCRUD.AddPerson(ref Otto);
 
                 myCRUD.AddEmail(ref JensEmail);
 
-                myCRUD.AddAlternativeAddress(ref JensAlternativeAddress);
+                myCRUD.AddAlternativeAddressPerson(ref JensAlternativeAddress);
+                myCRUD.AddAlternativeAddress(ref JensAlternativeAddress); /// HERE TEST
 
                 myCRUD.UpdatePerson(ref Jens);
                 myCRUD.UpdatePerson(ref Otto);
