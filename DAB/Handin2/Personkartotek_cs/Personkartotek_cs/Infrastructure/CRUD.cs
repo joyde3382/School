@@ -125,7 +125,6 @@ namespace Personkartotek_cs.Infrastruture
 
 
             using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
-
             {
 
                 // Get your parameters ready 
@@ -179,7 +178,6 @@ namespace Personkartotek_cs.Infrastruture
 
 
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
-
             {
 
                 // Get your parameters ready                    
@@ -226,7 +224,6 @@ namespace Personkartotek_cs.Infrastruture
         }
 
         public void DeleteAddress(ref Address mAddress)
-
         {
 
             string deleteString = @"DELETE FROM Address WHERE (addressId = @addressId)";
@@ -279,9 +276,9 @@ namespace Personkartotek_cs.Infrastruture
 
         public void AddAlternativeAddress(ref AlternativeAddress mAAddress)
         {
-            string sqlCmd = @"INSERT INTO [AternativeAddress] (attachedAddress_addressId)
+            string sqlCmd = @"INSERT INTO [AlternativeAddress] (attachedAddress_addressId, addressType)
                             OUTPUT INSERTED.AAId
-                            VALUES (@addressId)";
+                            VALUES (@addressId, @addressType)";
 
             using (SqlCommand cmd = new SqlCommand(sqlCmd, OpenConnection))
 
@@ -291,10 +288,104 @@ namespace Personkartotek_cs.Infrastruture
 
                 cmd.Parameters.AddWithValue("@addressId", mAAddress.attachedAddress.addressId);
 
+                cmd.Parameters.AddWithValue("@addressType", mAAddress.addressType);
+
                 mAAddress.AAId = (int)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record
 
             }
+
+            foreach (var a in mAAddress.attachedPerson)
+            {
+
+                string insertStringParam = @"INSERT INTO [AlternativeAddressPersons] (Person_personId, AlternativeAddress_AAId)
+
+                                                    VALUES (@personId, @AAId)";
+
+                using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+
+                {
+
+                    // Get your parameters ready                    
+
+                    cmd.Parameters.AddWithValue("@personId", a.personId);
+
+                    cmd.Parameters.AddWithValue("@AAId", mAAddress.AAId);
+
+                    var id = (int)cmd.ExecuteNonQuery(); //Returns the identity of the new tuple/record
+
+                }
+            }
         }
+
+
+        public void UpdateAlternativeAddress(ref AlternativeAddress mAAddress)
+        {
+
+            // prepare command string
+            string updateString =
+
+               @"UPDATE AlternativeAddress
+
+                        SET attachedAddress_addressId = @addressId, addressType = @addressType
+                        WHERE AAId = @AAId";
+
+            using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
+            {
+
+                // Get your parameters ready 
+
+                cmd.Parameters.AddWithValue("@addressId", mAAddress.attachedAddress.addressId);
+
+                cmd.Parameters.AddWithValue("@addressType", mAAddress.addressType);
+
+                cmd.Parameters.AddWithValue("@AAId", mAAddress.AAId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+
+            }
+
+            foreach (var a in mAAddress.attachedPerson)
+            {
+                string updateString2 =
+
+               @"UPDATE AlternativeAddressPersons
+
+                        SET Person_personId = @personId
+                        WHERE AlternativeAddress_AAId = @AAId";
+
+                using (SqlCommand cmd = new SqlCommand(updateString2, OpenConnection))
+                {
+
+                    // Get your parameters ready 
+
+                    cmd.Parameters.AddWithValue("@personId", a.personId);
+
+                    cmd.Parameters.AddWithValue("@AAId", mAAddress.AAId);
+
+                    var id = (int)cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        public void DeleteAlternativeAddress(ref AlternativeAddress mAAddress)
+        {
+
+            string deleteString = @"DELETE FROM AlternativeAddress WHERE (AAId = @AAId)";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+
+                cmd.Parameters.AddWithValue("@AAId", mAAddress.AAId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+
+            }
+
+            mAAddress = null;
+
+        }
+
 
         /**************** City CRUD ****************/
         public void AddCity(ref City mCity)
@@ -302,18 +393,13 @@ namespace Personkartotek_cs.Infrastruture
 
             // prepare command string using paramters in string and returning the given identity 
 
-
-
             string insertStringParam = @"INSERT INTO [City] (cityName, zipCode, countryRegion)
 
                                                     OUTPUT INSERTED.cityId  
 
                                                     VALUES (@cityName, @zipCode, @countryRegion)";
 
-
-
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
-
             {
 
                 // Get your parameters ready                    
@@ -337,18 +423,13 @@ namespace Personkartotek_cs.Infrastruture
 
             // prepare command string using paramters in string and returning the given identity 
 
-
-
             string insertStringParam = @"INSERT INTO [Email] (email, person_personId)
 
                                                     OUTPUT INSERTED.emailId
 
                                                     VALUES (@email, @person_personId)";
 
-
-
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
-
             {
 
                 // Get your parameters ready                    
@@ -363,8 +444,6 @@ namespace Personkartotek_cs.Infrastruture
 
         }
 
-
-        // FIX HERE
         public void UpdateEmail(ref Email mEmail)
         {
 
@@ -376,8 +455,6 @@ namespace Personkartotek_cs.Infrastruture
 
                         SET email = @email
                         WHERE emailId = @emailId";
-
-
 
             using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
             {
@@ -393,7 +470,98 @@ namespace Personkartotek_cs.Infrastruture
             }
 
         }
+        public void DeleteEmail(ref Email mEmail)
+        {
+
+            string deleteString = @"DELETE FROM Email WHERE (emailId = @emailId)";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+
+                cmd.Parameters.AddWithValue("@emailId", mEmail.emailId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+
+                mEmail = null;
+
+            }
+
+        }
+
+
+        /**************** ContactInfo CRUD ****************/
+        public void AddContactInfo(ref ContactInfo mContactInfo)
+        {
+
+            // prepare command string using paramters in string and returning the given identity 
+
+            string insertStringParam = @"INSERT INTO [ContactInfo] (phoneNumber, phoneType, phoneCompany, person_personId)
+
+                                                    OUTPUT INSERTED.contactId
+
+                                                    VALUES (@phoneNumber, @phoneType, @phoneCompany, @person_personId)";
+
+            using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnection))
+            {
+
+                // Get your parameters ready                    
+
+                cmd.Parameters.AddWithValue("@phoneNumber", mContactInfo.phoneNumber);//.ToString("yyyy-MM-dd HH:mm:ss"); 
+
+                cmd.Parameters.AddWithValue("@phoneType", mContactInfo.phoneType);
+
+                cmd.Parameters.AddWithValue("@phoneCompany", mContactInfo.phoneCompany);
+
+                cmd.Parameters.AddWithValue("@person_personId", mContactInfo.person.personId);
+
+                mContactInfo.contactId = (int)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record
+
+            }
+
+        }
+
+        public void UpdateContactInfo(ref ContactInfo mContactInfo)
+        {
+            // prepare command string
+
+            string updateString =
+
+               @"UPDATE ContactInfo
+
+                        SET phoneNumber = @phoneNumber, phoneType = @phoneType, phoneCompany = @phoneCompany
+                        WHERE contactId = @contactId";
+
+            using (SqlCommand cmd = new SqlCommand(updateString, OpenConnection))
+            {
+
+                // Get your parameters ready 
+
+                cmd.Parameters.AddWithValue("@phoneNumber", mContactInfo.phoneNumber);
+                cmd.Parameters.AddWithValue("@phoneType", mContactInfo.phoneType);
+                cmd.Parameters.AddWithValue("@phoneCompany", mContactInfo.phoneCompany);
+                cmd.Parameters.AddWithValue("@contactId", mContactInfo.contactId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+
+            }
+        }
+        public void DeleteContactInfo(ref ContactInfo mContactInfo)
+        {
+            string deleteString = @"DELETE FROM ContactInfo WHERE (contactId = @contactId)";
+
+            using (SqlCommand cmd = new SqlCommand(deleteString, OpenConnection))
+            {
+
+                cmd.Parameters.AddWithValue("@contactId", mContactInfo.contactId);
+
+                var id = (int)cmd.ExecuteNonQuery();
+
+                mContactInfo = null;
+
+            }
+
+        }
+
     }
 
-    
 }

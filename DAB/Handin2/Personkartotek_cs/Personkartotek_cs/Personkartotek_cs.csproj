@@ -53,9 +53,9 @@
     <Compile Include="DomainModel\AlternativeAddress.cs" />
     <Compile Include="DomainModel\City.cs" />
     <Compile Include="Infrastructure\CRUD.cs" />
-    <Compile Include="Migrations\201810111436532_inBus.cs" />
-    <Compile Include="Migrations\201810111436532_inBus.Designer.cs">
-      <DependentUpon>201810111436532_inBus.cs</DependentUpon>
+    <Compile Include="Migrations\201810111841574_final.cs" />
+    <Compile Include="Migrations\201810111841574_final.Designer.cs">
+      <DependentUpon>201810111841574_final.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="myCRUD.cs" />
@@ -77,8 +77,8 @@
     <Content Include="deleteData.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810111436532_inBus.resx">
-      <DependentUpon>201810111436532_inBus.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810111841574_final.resx">
+      <DependentUpon>201810111841574_final.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

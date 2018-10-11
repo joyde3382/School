@@ -15,7 +15,7 @@ namespace Personkartotek_cs.DomainModel
 
         public virtual string streetAddress { get; set; }
 
-        [Required]
+        
         public virtual List<Person> personId { get; set; }
 
         [Required]

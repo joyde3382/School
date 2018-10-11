@@ -14,7 +14,7 @@ namespace Personkartotek_cs.DomainModel
         public int contactId { get; set; }
 
         [Required]
-        public virtual Person personId { get; set; }
+        public virtual Person person { get; set; }
 
         [Index(IsUnique = true)]
         public int phoneNumber { get; set; }
