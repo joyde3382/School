@@ -13,20 +13,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
     Button connectionCheckButton, weatherButton, JSONButton;
     TextView weatherDisplay;
     JSONObject data = null;
+    Toast toast;
     private String TAG = MainActivity.class.getSimpleName();
 
 
@@ -98,65 +100,85 @@ public class MainActivity extends AppCompatActivity {
 
         new AsyncTask<Void, Void, Void>() {
 
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-            }
-
             @Override
             protected Void doInBackground(Void... params) {
-                try {
-                    URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=4f5d88ccc4aac74201b6c050bf87b1e8");
 
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+                String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=4f5d88ccc4aac74201b6c050bf87b1e8";
 
-                    BufferedReader reader =
-                            new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-                    StringBuffer json = new StringBuffer(1024);
-                    String tmp = "";
-
-                    while ((tmp = reader.readLine()) != null)
-                        json.append(tmp).append("\n");
-                    reader.close();
-
-                    data = new JSONObject(json.toString());
-
-                    if (data.getInt("cod") != 200) {
-                        System.out.println("Cancelled");
-                        return null;
+                // Request a string response from the provided URL.
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                // Display the first 500 characters of the response string.
+                                Toast("Recieved response string");
+                                try {
+                                    data = new JSONObject(response);
+                                } catch (Exception e) {
+                                    System.out.println("Exception " + e.getMessage());
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast("That didn't work!");
                     }
+                });
 
-
-                } catch (Exception e) {
-
-                    System.out.println("Exception " + e.getMessage());
-                    return null;
-                }
-
+                // Add the request to the RequestQueue.
+                queue.add(stringRequest);
 
 
                 return null;
             }
-
-            @Override
-            protected void onPostExecute(Void Void) {
-                if (data != null) {
-                    Toast("Displaying weather");
-                    Log.d("my weather received", data.toString());
-                }
-
-            }
         }.execute();
+    }
+//                try {
+//                    URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=4f5d88ccc4aac74201b6c050bf87b1e8");
+//
+//                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//
+//                    BufferedReader reader =
+//                            new BufferedReader(new InputStreamReader(connection.getInputStream()));
+//
+//                    StringBuffer json = new StringBuffer(1024);
+//                    String tmp = "";
+//
+//                    while ((tmp = reader.readLine()) != null)
+//                        json.append(tmp).append("\n");
+//                    reader.close();
+//
+//                    data = new JSONObject(json.toString());
+//
+//                    if (data.getInt("cod") != 200) {
+//                        System.out.println("Cancelled");
+//                        return null;
+//                    }
+//
+//
+//                } catch (Exception e) {
+//
+//                    System.out.println("Exception " + e.getMessage());
+//                    return null;
+//                }
+
+
+
+//                return null;
+//            }
+//        }.execute();
 
         // return data;
-    }
+//    }
 
     // simple toast function
     public void Toast(String message){
-    Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+
+    if(toast != null){
+        toast.cancel();
+    }
+    toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
     toast.show();
     }
 }

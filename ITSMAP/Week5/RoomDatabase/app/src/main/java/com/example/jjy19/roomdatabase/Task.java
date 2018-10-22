@@ -4,44 +4,56 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity
 public class Task {
 
-    @PrimaryKey
-    private int taskID;
+    @PrimaryKey(autoGenerate = true)
+    private int uid;
 
-    @ColumnInfo(name = "task_name")
-    private String taskName;
+    @ColumnInfo(name = "name")
+    private String name;
 
-    @ColumnInfo(name = "task_place")
-    private String taskPlace;
+    //no annotation: default to column name = var name
+    private String place;
+    private Date date;
 
-    public Task(String name, String place) {
-        this.taskName = name;
-        this.taskPlace = place;
+    public Task(String name, String place){
+        this.name = name;
+        this.place = place;
+        this.date = new Date(System.currentTimeMillis());
     }
 
-    public int getTaskID() {
-        return taskID;
+    public int getUid() {
+        return uid;
     }
 
-    public void setTaskID(int taskID) {
-        this.taskID = taskID;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTaskPlace() {
-        return taskPlace;
+    public String getPlace() {
+        return place;
     }
 
-    public void setTaskPlace(String taskPlace) {
-        this.taskPlace = taskPlace;
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

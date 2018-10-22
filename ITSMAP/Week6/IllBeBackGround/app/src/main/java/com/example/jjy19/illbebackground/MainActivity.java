@@ -2,9 +2,11 @@ package com.example.jjy19.illbebackground;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,11 +14,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.os.IBinder;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button startButton;
-    Button stopButton;
+    Button startButton, stopButton, bindButton, unbindButton, getCountButton;
+    Toast toast;
+    private  myBoundService boundService;
+    private ServiceConnection myServiceConnection;
+    boolean bound = false;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,61 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        bindButton = findViewById(R.id.bindBtn);
+        bindButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, myBoundService.class);
+                bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
+                bound = true;
+            }
+        });
+
+        unbindButton = findViewById(R.id.unbindBtn);
+        unbindButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (bound) {
+                    // Detach our existing connection.
+                    unbindService(myServiceConnection);
+                    bound = false;
+                }
+            }
+        });
+
+        getCountButton = findViewById(R.id.getCountBtn);
+        getCountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(bound && boundService!=null){
+                    count = boundService.getCount();
+                    //update textView
+                    Toast("Count is " + count);
+                } else {
+                    Toast("Not bound yet");
+
+                }
+            }
+        });
+
+            myServiceConnection = new ServiceConnection() {
+                public void onServiceConnected(ComponentName className, IBinder service) {
+                    // This is called when the connection with the service has been
+                    // established, giving us the service object we can use to
+                    // interact with the service.  Because we have bound to a explicit
+                    // service that we know is running in our own process, we can
+                    // cast its IBinder to a concrete class and directly access it.
+                    //ref: http://developer.android.com/reference/android/app/Service.html
+                    boundService = ((myBoundService.serviceBinder) service).getService();
+                    //Log.d(LOG, "Counting service connected");
+
+                }
+
+                @Override
+                public void onServiceDisconnected(ComponentName name) {
+                    boundService = null;
+                }
+            };
     }
 
     public BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -61,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
 
     // simple toast function
     public void Toast(String message){
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        if(toast != null){
+            toast.cancel();
+        }
+        toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         toast.show();
     }
 

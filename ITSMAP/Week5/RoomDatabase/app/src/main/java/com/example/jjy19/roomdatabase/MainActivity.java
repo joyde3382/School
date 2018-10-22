@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button addButton;
     EditText editTaskName;
     EditText editTaskPlace;
-    List<TaskData> tasks;
+    private List<Task> tasks;
     TaskDatabase db;
 
     @Override
@@ -30,30 +30,38 @@ public class MainActivity extends AppCompatActivity {
         //load tasks from database
         // tasks = loadTasks();
 
-        db = Room.databaseBuilder(getApplicationContext(),
-                TaskDatabase.class, "Task-database").build();
-
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addTask();
+                addTaskPressed();
             }
         });
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                TaskDatabase.class, "Task-database").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+
+        tasks = db.taskDao().getAll();
+
+
     }
 
-    private void addTask(){
+    private void addTaskPressed(){
         String tempTask = editTaskName.getText().toString();
         String tempPlace = editTaskPlace.getText().toString();
         final Task t = new Task(tempTask, tempPlace);
 
-        t.setTaskName(tempTask);
-        t.setTaskPlace(tempPlace);
+//        t.setTaskName(tempTask);
+//        t.setTaskPlace(tempPlace);
 
         tasks.add(t);
-        addTask();
+        db.taskDao().insertAll(t);
+    }
 
+    private void addTask(Task t){
+        ((TaskApplication)getApplicationContext()).getTaskDatabase().taskDao().insertAll(t);
+    }
 
-        db.taskDao().insertAll(newTask);
+    private List<Task> loadTasks(){
+        return ((TaskApplication)getApplicationContext()).getTaskDatabase().taskDao().getAll();
     }
 }
