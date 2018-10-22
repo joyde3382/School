@@ -27,4 +27,5 @@ public interface StockDAO {
 
     @Delete
     void delete(Stock... stock);
+
 }

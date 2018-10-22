@@ -4,68 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OverviewActivity"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    tools:context=".OverviewActivity">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="48dp"
         android:text="@string/StockTag"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/overView_stockName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.132" />
-
-    <TextView
-        android:id="@+id/overView_stockName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
-        android:text="@string/StockType"
-        app:layout_constraintBottom_toTopOf="@+id/overView_sectorPic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/overView_stockPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="59dp"
-        android:text="@string/StockPrice"
-        app:layout_constraintBottom_toTopOf="@+id/detailsBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overView_sectorPic" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/detailsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginBottom="86dp"
-        android:textAllCaps = "false"
-        android:text="@string/OverviewButton"
+        android:id="@+id/addStockBtn"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="16dp"
+        android:text="+"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overView_stockPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
 
-    <ImageView
-        android:id="@+id/overView_sectorPic"
-        android:layout_width="123dp"
-        android:layout_height="104dp"
-        android:layout_marginBottom="70dp"
-        app:layout_constraintBottom_toTopOf="@+id/overView_stockPrice"
+    <ListView
+        android:id="@+id/stockListView"
+        android:layout_width="368dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/addStockBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/overView_stockName"
-        app:srcCompat="@android:drawable/ic_menu_manage" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
