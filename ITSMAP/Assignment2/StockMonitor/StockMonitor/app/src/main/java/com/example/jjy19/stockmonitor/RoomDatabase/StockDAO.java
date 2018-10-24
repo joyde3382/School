@@ -22,10 +22,14 @@ public interface StockDAO {
     @Insert
     void insertAll(Stock... stocks);
 
+    @Insert
+    void insert(Stock... stocks);
+
+
     @Update
-    void update(Stock... stock);
+    void update(Stock... stocks);
 
     @Delete
-    void delete(Stock... stock);
+    void delete(Stock... stocks);
 
 }

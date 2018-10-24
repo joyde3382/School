@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 getJSON("Randers,dk");
             }
         });
+
         connectionCheckButton = findViewById(R.id.checkStatusBtn);
         connectionCheckButton.setOnClickListener(new View.OnClickListener() {
         @Override

@@ -16,6 +16,7 @@
     <string name="Sector">Sector:</string>
     <string name="BackButton">Back</string>
     <string name="EditButton">Edit</string>
+    <string name="DeleteButton">Delete</string>
 
     <!-- Edit Activity strings -->
     <string name="CheckBox1">Technology</string>

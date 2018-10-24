@@ -1,16 +1,14 @@
 package com.example.jjy19.stockmonitor;
 
-import android.annotation.SuppressLint;
-import android.arch.persistence.room.Room;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -20,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
 import com.example.jjy19.stockmonitor.RoomDatabase.StockDatabase;
@@ -37,26 +34,18 @@ public class OverviewActivity extends SharedVariables {
     ImageView sectorImage;
     ListView stockListView;
 
-    boolean bound = false;
+
     private StockService boundService;
-    private ServiceConnection myServiceConnection;
+    //private ServiceConnection myServiceConnection;
     private AsyncTask mMyTask;
-    private List<Stock> stocks;
+    // private List<Stock> stocks;
+    List<Stock> stocks;
     StockDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
-
-        // initialize ui elements
-        initUIElements();
-
-
-        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
-
-        //newStock = getIntent().getParcelableExtra(StockMessage); // TODO Get from db instead
 
         myServiceConnection = new ServiceConnection() {
             public void onServiceConnected(ComponentName className, IBinder service) {
@@ -77,14 +66,23 @@ public class OverviewActivity extends SharedVariables {
             }
         };
 
-        Intent intent = new Intent(OverviewActivity.this, StockService.class);
-        intent.putExtra(StockMessage, newStock);
+        // initialize ui elements
+        initUIElements();
 
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+        lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
+
+        newStock = getIntent().getParcelableExtra(StockMessage); // TODO Get from db instead
+
+
+
+        Intent intent = new Intent(OverviewActivity.this, StockService.class);
         bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
         bound = true;
 
+
         // update the stock object (if phone is flipped/app is restarted)
-        update(newStock);
+
 
         addStockButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,35 +91,29 @@ public class OverviewActivity extends SharedVariables {
             }
         });
 
-        ArrayList<Stock> stockList = new ArrayList<>();
-
-
-        stockList.add(newStock); // TODO load list from db
-
-        CustomListAdapter adapter = new CustomListAdapter(this, R.layout.adapter_layout,stockList);
         // TODO put in update()
-        stockListView.setAdapter(adapter);
+
         stockListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                switch (position) {
-                    case 0:
-                        goToDetailsActivity();
-                        break;
+                Stock tempStock = stocks.get(position);
 
-                    case 1:
-                        goToDetailsActivity();
-                        break;
-
-                    case 2:
-                        goToDetailsActivity();
-                        break;
-
-                }
+                goToDetailsActivity(tempStock);
             }
         });
 
+        new CountDownTimer(400, 400) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            public void onFinish() {
+                updateUI();
+            }
+        }.start();
 
 
     }
@@ -131,15 +123,37 @@ public class OverviewActivity extends SharedVariables {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
+
                 String str = intent.getStringExtra("ServiceData");
 
-                List<Stock> stocks = intent.getParcelableExtra("ServiceStockList");
-                if (str == "Update ListView")
+                newStock = intent.getParcelableExtra("Stock");
+
+
+
+                CustomListAdapter adapter = new CustomListAdapter(OverviewActivity.this, R.layout.adapter_layout, (ArrayList<Stock>) stocks);
+                try {
+
+                    if (str == "Update") {
+//                        stockListView.setAdapter(adapter);
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList"); // TODO Fix placement (is sometimes null)
+                    } else if (str == "UpdateStock") {
+                        adapter.insert(newStock, newStock.getSid());
+                        stockListView.setAdapter(adapter);
+                    } else if (str == "Add") {
+                        adapter.add(newStock);
+                    } else if (str == "Delete") {
+                        adapter.remove(newStock);
+                    }
+
+                    stockListView.setAdapter(adapter);
+
+                } catch (Exception e)
                 {
-                    // stockListView.
+                    e.printStackTrace();
                 }
+
                 Toast(str);
-                // get all your data from intent and do what you want
+
             }
         }
     };
@@ -147,17 +161,32 @@ public class OverviewActivity extends SharedVariables {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+
         if(resultCode == RESULT_OK) {
 
-            Toast("Stock has been saved!");
             newStock = data.getExtras().getParcelable(StockMessage);
 
+            int tempRequestCode = data.getIntExtra("requestCode", requestCode);
 
 
-            update(newStock);
+            if (tempRequestCode == requestCodes.Delete.getValue() )
+            {
+                Toast("Stock has been deleted");
+                boundService.deleteStock(newStock);
 
+            }
+
+            else if (tempRequestCode == requestCodes.Add.getValue()) {
+                Toast("Stock has been saved!");
+
+                boundService.addStock(newStock);
+
+            }
+
+            updateUI();
         }
-        else if (requestCode == RESULT_CANCELED){
+
+        else if (resultCode == RESULT_CANCELED){
             Toast("Cancel Clicked");
         }
 
@@ -181,42 +210,19 @@ public class OverviewActivity extends SharedVariables {
 
         newStock = savedInstanceState.getParcelable("stockObject");
 
-        update(newStock);
+        updateUI();
     }
 
     // Update is used to set text and image after a restart of the app, or a new stock is created
-    private void update( Stock stock){
+    private void updateUI(){
 
-        Resources res = getResources();
+        boundService.getStocks();
 
-//        if (stock == null) {
-//            Stock defaultStock = new Stock("N/A", 00, 0, "N/A");
-//            nameText.setText(defaultStock.getStockName());
-//
-//            priceText.setText(String.format(res.getString(R.string.StockPrice), defaultStock.getStockPrice()));
-//
-//            sectorImage.setImageResource(R.drawable.na);
-//        }
-//        else {
-//
-//            priceText.setText(String.format(res.getString(R.string.StockPrice), stock.getStockPrice()));
-//
-//            nameText.setText(stock.getStockName());
-//
-//            if (stock.getStockSector().equals(getString(R.string.CheckBox1))) // Tech
-//                sectorImage.setImageResource(R.drawable.tech);
-//            else if (stock.getStockSector().equals(getString(R.string.CheckBox2))) // health
-//                sectorImage.setImageResource(R.drawable.health);
-//            else if (stock.getStockSector().equals(getString(R.string.CheckBox3))) // Materials
-//                sectorImage.setImageResource(R.drawable.materials);
-//            else
-//                sectorImage.setImageResource(R.drawable.na);
-//        }
     }
 
-    private void goToDetailsActivity(){
+    private void goToDetailsActivity(Stock stock){
         Intent intent = new Intent(OverviewActivity.this, DetailsActivity.class);
-        intent.putExtra(StockMessage, newStock);
+        intent.putExtra(StockMessage, stock);
         startActivityForResult(intent,requestCode);
     }
 
@@ -232,5 +238,14 @@ public class OverviewActivity extends SharedVariables {
         sectorImage = findViewById(R.id.overView_sectorPic);
         addStockButton = findViewById(R.id.addStockBtn);
         stockListView = findViewById(R.id.stockListView);
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        unbindService(myServiceConnection);
+        bound = false;
+
+        super.onDestroy();
     }
 }

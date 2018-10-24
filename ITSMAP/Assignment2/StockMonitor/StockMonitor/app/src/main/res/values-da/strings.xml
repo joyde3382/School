@@ -14,6 +14,7 @@
     <string name="Sector">Sektor:</string>
     <string name="BackButton">Tilbage</string>
     <string name="EditButton">Rediger</string>
+    <string name="DeleteButton">Slet</string>
 
     <!-- Edit Activity strings -->
     <string name="CheckBox1">Teknologi</string>

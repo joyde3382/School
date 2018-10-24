@@ -1,18 +1,26 @@
 package com.example.jjy19.stockmonitor;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
+import com.example.jjy19.stockmonitor.Service.StockService;
 
 public class DetailsActivity extends SharedVariables {
 
-    Button editButton, backButton;
+    Button editButton, backButton, deleteButton;
     TextView nameText, priceText, stockText, sectorText;
+
+    Stock newStock;
+    StockService tempService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +30,12 @@ public class DetailsActivity extends SharedVariables {
         // initialize UI elements
         initUIElements();
 
+        newStock = getIntent().getParcelableExtra(StockMessage);
+
         // setup text with values from saved object
         setDetailsText();
+
+
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +50,20 @@ public class DetailsActivity extends SharedVariables {
                 finish();
             }
         });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DetailsActivity.this, OverviewActivity.class);
+                intent.putExtra(StockMessage, newStock);
+                intent.putExtra("requestCode", requestCodes.Delete.getValue());
+                setResult(RESULT_OK, intent);
+
+
+                finish();
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -47,6 +73,7 @@ public class DetailsActivity extends SharedVariables {
             Intent intent = new Intent(this, OverviewActivity.class);
             Stock newStock = data.getExtras().getParcelable(StockMessage);
             intent.putExtra(StockMessage,newStock);
+            intent.putExtra("requestCode", requestCodes.Add.getValue());
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -57,7 +84,7 @@ public class DetailsActivity extends SharedVariables {
     }
 
     private void setDetailsText(){
-        Stock newStock = getIntent().getParcelableExtra(StockMessage);
+
 
         if (newStock != null) {
             nameText.setText(newStock.getStockName());
@@ -77,6 +104,7 @@ public class DetailsActivity extends SharedVariables {
     private void initUIElements(){
         editButton = findViewById(R.id.editBtn);
         backButton = findViewById(R.id.backBtn);
+        deleteButton = findViewById(R.id.deleteBtn);
 
         nameText = findViewById(R.id.details_name);
         priceText = findViewById(R.id.details_price);
@@ -86,6 +114,7 @@ public class DetailsActivity extends SharedVariables {
 
     private void goToEditActivity(){
         Intent intent = new Intent(this, EditActivity.class);
+        intent.putExtra(StockMessage, newStock);
         startActivityForResult(intent,requestCode);
     }
 }
