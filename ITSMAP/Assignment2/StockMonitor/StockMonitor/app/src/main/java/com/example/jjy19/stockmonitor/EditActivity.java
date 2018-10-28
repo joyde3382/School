@@ -1,28 +1,22 @@
 package com.example.jjy19.stockmonitor;
 
 import android.annotation.SuppressLint;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
-import com.example.jjy19.stockmonitor.RoomDatabase.StockDatabase;
-
-import java.util.List;
 
 public class EditActivity extends SharedVariables {
 
     String sectorValue;
     Button saveButton, cancelButton;
-    EditText nameText, priceText, stockText;
+    EditText nameText, symbolText, priceText, stockText;
     RadioButton radioButton1, radioButton2, radioButton3;
     RadioGroup sectorGroup;
 
@@ -68,6 +62,11 @@ public class EditActivity extends SharedVariables {
             Toast(res.getString(R.string.MissingName));
             return;
         }
+        if(symbolText.getEditableText().toString().equals(""))
+        {
+            Toast(res.getString(R.string.MissingSymbol));
+            return;
+        }
 
         if(priceText.getEditableText().toString().equals(""))
         {
@@ -93,8 +92,8 @@ public class EditActivity extends SharedVariables {
         }
 
         // Create new stock object with the input values from user
-        Stock stock = new Stock(nameText.getText().toString(), Double.parseDouble(priceText.getText().toString()), Integer.parseInt(stockText.getText().toString()), sectorValue);
-
+        Stock stock = new Stock(nameText.getText().toString(),symbolText.getText().toString(), Double.parseDouble(priceText.getText().toString()), Integer.parseInt(stockText.getText().toString()), sectorValue);
+        stock.setSymbol(symbolText.getText().toString());
 
 
         intent.putExtra(StockMessage,stock);
@@ -109,7 +108,8 @@ public class EditActivity extends SharedVariables {
 
 
         if (newStock != null) {
-            nameText.setText(newStock.getStockName());
+            nameText.setText(newStock.getCompanyName());
+            symbolText.setText(newStock.getSymbol());
             priceText.setText("" + newStock.getStockPrice());
             stockText.setText("" + newStock.getNumberOfStocks());
 
@@ -122,8 +122,9 @@ public class EditActivity extends SharedVariables {
 
         }
         else{
-            Stock defaultStock = new Stock("N/A",00,0,"N/A");
-            nameText.setText(defaultStock.getStockName());
+            Stock defaultStock = new Stock("N/A","",00,0,"N/A");
+            nameText.setText(defaultStock.getCompanyName());
+            symbolText.setText(defaultStock.getSymbol());
             priceText.setText("" + defaultStock.getStockPrice());
             stockText.setText("" + defaultStock.getNumberOfStocks());
 
@@ -144,6 +145,7 @@ public class EditActivity extends SharedVariables {
 
         // editText
         nameText = findViewById(R.id.edit_name);
+        symbolText = findViewById(R.id.edit_symbol);
         priceText = findViewById(R.id.edit_price);
         stockText = findViewById(R.id.edit_stock);
 

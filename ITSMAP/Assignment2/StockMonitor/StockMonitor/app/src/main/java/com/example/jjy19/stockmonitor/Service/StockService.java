@@ -31,7 +31,7 @@ public class StockService extends Service {
     private List<Stock> stocks;
 
 
-    StockDatabase db;
+
     Stock newStock;
     Context context = this;
     JSONObject data = null;
@@ -62,8 +62,10 @@ public class StockService extends Service {
             public void run() {
                     try {
 
-                        db = Room.databaseBuilder(getApplicationContext(),
-                                StockDatabase.class, "Task-database").build();
+                        StockDatabase db = null;
+//                        db = Room.
+
+
 
 
                         while (true) {
@@ -76,11 +78,11 @@ public class StockService extends Service {
 
                                 final Stock tempStock = stocks.get(i);
 
-                                String tempStockName = tempStock.getStockName();
+                                String tempStockSymbol = tempStock.getSymbol();
 
                                 /***** Get Iextrading data for stock ******/
 
-                                String url = "https://ws-api.iextrading.com/1.0/stock/" + tempStockName + "/delayed-quote";
+                                String url = "https://ws-api.iextrading.com/1.0/stock/" + tempStockSymbol + "/delayed-quote";
 
                                 // Request a string response from the provided URL.
                                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -88,8 +90,8 @@ public class StockService extends Service {
                                             @Override
                                             public void onResponse(String response) {
 
-                                                Toast toast = Toast.makeText(getApplicationContext(), "Recieved response string", Toast.LENGTH_SHORT);
-                                                toast.show();
+//                                                Toast toast = Toast.makeText(getApplicationContext(), "Recieved response string", Toast.LENGTH_SHORT);
+//                                                toast.show();
 
                                                 try {
                                                     data = new JSONObject(response);
@@ -105,11 +107,12 @@ public class StockService extends Service {
 
                                                         tempStock.setStockPrice(delayedPrice);
 
-                                                        addStock(tempStock);
+                                                        updateStock(tempStock);
 
                                                         Intent intent = new Intent();
                                                         intent.setAction("filter_string");
-                                                        intent.putExtra("StockUpdate", tempStock);
+//                                                        intent.putExtra("Stock", tempStock);
+                                                        intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                                                         intent.putExtra("ServiceData", "UpdateStock");
 
                                                         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -136,7 +139,6 @@ public class StockService extends Service {
 
                                 // Add the request to the RequestQueue.
                                 queue.add(stringRequest);
-                                Thread.sleep(1000);
 
                             }
                             Thread.sleep(5000);
@@ -172,8 +174,8 @@ public class StockService extends Service {
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
-                    intent.putExtra("Stock", stock);
-//                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+//                    intent.putExtra("Stock", stock);
+                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                     intent.putExtra("ServiceData", "Delete");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -197,12 +199,12 @@ public class StockService extends Service {
                 try {
 
                     db.StockDao().insert(stock);
-//                    stocks = db.StockDao().getAll();
+                    stocks = db.StockDao().getAll();
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
                     intent.putExtra("Stock", stock);
-//                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                     intent.putExtra("ServiceData", "Add");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -216,6 +218,34 @@ public class StockService extends Service {
         Thread t = new Thread(r);
         t.start();
     }
+
+//    public void addStocks(final List<Stock> stockList){
+//
+//        Runnable r = new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//
+//                    db.StockDao().insertAll(stockList);
+//                    stocks = db.StockDao().getAll();
+//
+//                    Intent intent = new Intent();
+//                    intent.setAction("filter_string");
+////                    intent.putExtra("Stock", stock);
+//                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+//                    intent.putExtra("ServiceData", "AddList");
+//
+//                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+//
+//                } catch (Exception e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//        Thread t = new Thread(r);
+//        t.start();
+//    }
 
     public void getStocks(){
 
@@ -243,6 +273,23 @@ public class StockService extends Service {
         t.start();
     }
 
+    public void updateStock(final Stock stock){
 
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    db.StockDao().update(stock);
+
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread t = new Thread(r);
+        t.start();
+    }
 
 }

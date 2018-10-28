@@ -39,7 +39,11 @@ public class OverviewActivity extends SharedVariables {
     //private ServiceConnection myServiceConnection;
     private AsyncTask mMyTask;
     // private List<Stock> stocks;
-    List<Stock> stocks;
+    private List<Stock> stocks;
+//    private CustomListAdapter adapter;
+    boolean initList = true;
+    int tempPositon;
+
     StockDatabase db;
 
     @Override
@@ -71,6 +75,8 @@ public class OverviewActivity extends SharedVariables {
 
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
         lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
+
+
 
         newStock = getIntent().getParcelableExtra(StockMessage); // TODO Get from db instead
 
@@ -126,26 +132,40 @@ public class OverviewActivity extends SharedVariables {
 
                 String str = intent.getStringExtra("ServiceData");
 
-                newStock = intent.getParcelableExtra("Stock");
-
-
+                Stock tempStock = intent.getParcelableExtra("Stock");
 
                 CustomListAdapter adapter = new CustomListAdapter(OverviewActivity.this, R.layout.adapter_layout, (ArrayList<Stock>) stocks);
+
+
                 try {
 
+
                     if (str == "Update") {
-//                        stockListView.setAdapter(adapter);
-                        stocks = intent.getParcelableArrayListExtra("ServiceStockList"); // TODO Fix placement (is sometimes null)
-                    } else if (str == "UpdateStock") {
-                        adapter.insert(newStock, newStock.getSid());
-                        stockListView.setAdapter(adapter);
+                        adapter.clear();
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.addAll(stocks);
+
                     } else if (str == "Add") {
-                        adapter.add(newStock);
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.add(tempStock);
+//                        adapter.addAll(stocks);
+
+                    } else if (str == "UpdateStock") {
+                        adapter.clear();
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.addAll(stocks);
+
                     } else if (str == "Delete") {
-                        adapter.remove(newStock);
+                        adapter.clear();
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.addAll(stocks);
+
                     }
 
+
+                    adapter.notifyDataSetChanged();
                     stockListView.setAdapter(adapter);
+
 
                 } catch (Exception e)
                 {
@@ -192,6 +212,7 @@ public class OverviewActivity extends SharedVariables {
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

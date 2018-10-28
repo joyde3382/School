@@ -2,7 +2,6 @@ package com.example.jjy19.stockmonitor;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ public class CustomListAdapter extends ArrayAdapter<Stock> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        String stockName = getItem(position).getStockName();
+        String stockName = getItem(position).getCompanyName();
         double stockCurrentPrice = getItem(position).getStockPrice();
         double stockDifferens = getItem(position).getStockPrice(); // TODO update with differens in price
 

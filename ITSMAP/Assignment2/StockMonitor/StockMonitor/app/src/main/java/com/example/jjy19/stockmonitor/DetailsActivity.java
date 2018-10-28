@@ -1,15 +1,10 @@
 package com.example.jjy19.stockmonitor;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
 import com.example.jjy19.stockmonitor.Service.StockService;
@@ -87,14 +82,14 @@ public class DetailsActivity extends SharedVariables {
 
 
         if (newStock != null) {
-            nameText.setText(newStock.getStockName());
+            nameText.setText(newStock.getCompanyName());
             priceText.setText("" + newStock.getStockPrice());
             stockText.setText("" + newStock.getNumberOfStocks());
             sectorText.setText(newStock.getStockSector());
         }
         else{
-            Stock defaultStock = new Stock("N/A",00,0,"N/A");
-            nameText.setText(defaultStock.getStockName());
+            Stock defaultStock = new Stock("N/A","",00,0,"N/A");
+            nameText.setText(defaultStock.getCompanyName());
             priceText.setText("" + defaultStock.getStockPrice());
             stockText.setText("" + defaultStock.getNumberOfStocks());
             sectorText.setText(defaultStock.getStockSector());

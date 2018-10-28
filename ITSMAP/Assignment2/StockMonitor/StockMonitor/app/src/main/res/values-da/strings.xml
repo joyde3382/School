@@ -9,6 +9,7 @@
 
     <!-- Details Activity strings -->
     <string name="StockName">Navn:</string>
+    <string name="StockSymbol">Symbol:</string>
     <string name="StockTag2">Pris:</string>
     <string name="NumberOfStocks">#Aktier:</string>
     <string name="Sector">Sektor:</string>
@@ -23,9 +24,11 @@
     <string name="CancelButton">Afbryd</string>
     <string name="SaveButton">Gem</string>
     <string name="MissingName">Sæt et navn</string>
+    <string name="MissingSymbol">Sæt et symbol</string>
     <string name="MissingPrice">Sæt en pris</string>
     <string name="MissingStock">Sæt en aktie</string>
     <string name="nameHint">Skriv et aktienavn</string>
+    <string name="symbolHint">Skriv et aktiesymbol</string>
     <string name="PriceHint">Sæt en aktiepris</string>
     <string name="StockHint">Vælg antal aktier</string>
 

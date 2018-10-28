@@ -47,6 +47,8 @@ public abstract class SharedVariables extends Activity {
         public int getValue() { return value; }
     }
 
+
+
     // simple toast function
     public void Toast(String message){
         if(toast != null){

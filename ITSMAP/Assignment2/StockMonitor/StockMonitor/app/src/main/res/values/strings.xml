@@ -11,6 +11,7 @@
 
     <!-- Details Activity strings -->
     <string name="StockName">Name:</string>
+    <string name="StockSymbol">Symbol:</string>
     <string name="StockTag2">Price:</string>
     <string name="NumberOfStocks">#Stocks:</string>
     <string name="Sector">Sector:</string>
@@ -25,9 +26,11 @@
     <string name="CancelButton">Cancel</string>
     <string name="SaveButton">Save</string>
     <string name="MissingName">Please set a name</string>
+    <string name="MissingSymbol">Please set a symbol</string>
     <string name="MissingPrice">Please set a price</string>
     <string name="MissingStock">Please set a stock</string>
     <string name="nameHint">Write a stock name</string>
+    <string name="symbolHint">Write a stock symbol</string>
     <string name="PriceHint">Set a stock price</string>
     <string name="StockHint">Pick number of stocks</string>
 
