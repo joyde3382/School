@@ -2,6 +2,7 @@ package com.example.jjy19.stockmonitor.Service;
 
 import android.app.Service;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
@@ -31,7 +32,7 @@ public class StockService extends Service {
     private List<Stock> stocks;
 
 
-
+    StockDatabase db;
     Stock newStock;
     Context context = this;
     JSONObject data = null;
@@ -61,12 +62,15 @@ public class StockService extends Service {
             @Override
             public void run() {
                     try {
+                        // db = StockDatabase.getInstance(getApplicationContext());
+                        db = Room.databaseBuilder(getApplicationContext(),
+                                StockDatabase.class, "Task-database").build();
 
-                        StockDatabase db = null;
-//                        db = Room.
+                        List<Stock> tempstocks = db.StockDao().getAll();
 
-
-
+                        if(tempstocks.isEmpty()) {
+                            db.StockDao().insertAll(Stock.populateData());
+                        }
 
                         while (true) {
 
@@ -111,8 +115,8 @@ public class StockService extends Service {
 
                                                         Intent intent = new Intent();
                                                         intent.setAction("filter_string");
-//                                                        intent.putExtra("Stock", tempStock);
-                                                        intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+                                                        intent.putExtra("Stock", tempStock);
+                                                        //intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                                                         intent.putExtra("ServiceData", "UpdateStock");
 
                                                         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -126,20 +130,15 @@ public class StockService extends Service {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
 
-                                        Toast toast = Toast.makeText(getApplicationContext(), "That didn't work!", Toast.LENGTH_SHORT);
-                                        toast.show();
+                                        //Toast toast = Toast.makeText(getApplicationContext(), "That didn't work!", Toast.LENGTH_SHORT);
+                                        //toast.show();
 
                                     }
                                 });
 
-
                                 /***** Get price data ******/
-
-
-
                                 // Add the request to the RequestQueue.
                                 queue.add(stringRequest);
-
                             }
                             Thread.sleep(5000);
                         }
@@ -170,18 +169,17 @@ public class StockService extends Service {
                 try {
 
                     db.StockDao().delete(stock);
-                    stocks = db.StockDao().getAll();
+                   // stocks = db.StockDao().getAll();
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
-//                    intent.putExtra("Stock", stock);
-                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+                    intent.putExtra("Stock", stock);
+//                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                     intent.putExtra("ServiceData", "Delete");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -204,13 +202,12 @@ public class StockService extends Service {
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
                     intent.putExtra("Stock", stock);
-                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+                    //intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                     intent.putExtra("ServiceData", "Add");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -264,7 +261,6 @@ public class StockService extends Service {
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -283,7 +279,6 @@ public class StockService extends Service {
                     db.StockDao().update(stock);
 
                 } catch (Exception e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }

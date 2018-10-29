@@ -10,6 +10,8 @@ import android.support.annotation.NonNull;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
 
+import java.util.concurrent.Executors;
+
 @Database(entities = {Stock.class}, exportSchema = false, version = 4)
 @TypeConverters({Converters.class})
 public abstract class StockDatabase extends RoomDatabase {
@@ -34,13 +36,13 @@ public abstract class StockDatabase extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-//                        Executors.newSingleThreadScheduledExecutor().execute(
+                        Executors.newSingleThreadScheduledExecutor().execute(
                         new Runnable() {
                             @Override
                             public void run() {
                                 getInstance(context).StockDao().insertAll(Stock.populateData());
                             }
-                        };
+                        });
                     }
                 }).build();
     }

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class CustomListAdapter extends ArrayAdapter<Stock> {
 
-    private  static final String TAG = "DemoListAdapter";
     private Context mContext;
     int mResource;
 
