@@ -8,7 +8,7 @@ import android.os.Parcelable;
 
 import java.util.Date;
 
-@Entity
+@Entity(tableName = "stock_table")
 public class Stock implements Parcelable {
 
 
@@ -88,23 +88,7 @@ public class Stock implements Parcelable {
     public void setLatestValue(double latestValue) { this.latestValue = latestValue; }
 
 
-    public static Stock[] populateData() {
 
-        return new Stock[]{
-
-                new Stock("Apple", "aapl", 100, 5, "Technology"),
-                new Stock("Microsoft", "MSFT", 200, 6, "Technology"),
-                new Stock("Google", "GOOGL", 300, 7, "Technology"),
-                new Stock("Tesla", "TSLA", 400, 8, "Technology"),
-                new Stock("Vestas", "VWS", 230, 9, "Technology"),
-                new Stock("Bitcoin", "XBT", 40, 10, "Technology"),
-                new Stock("Ethereum", "GDAX", 10, 11, "Technology"),
-                new Stock("General Motors", "GM", 240, 12, "Technology"),
-                new Stock("Sony", "SNE", 440, 13, "Technology"),
-                new Stock("Amazon", "AMZN", 500, 14, "Technology")
-
-        };
-    }
     /*****************************/
     // make class parseable (Auto-generated)
     protected Stock(Parcel in) {

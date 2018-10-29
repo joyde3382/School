@@ -68,7 +68,7 @@ public class DetailsActivity extends SharedVariables {
             Intent intent = new Intent(this, OverviewActivity.class);
             Stock newStock = data.getExtras().getParcelable(StockMessage);
             intent.putExtra(StockMessage,newStock);
-            intent.putExtra("requestCode", requestCodes.Add.getValue());
+            intent.putExtra("requestCode", data.getIntExtra("requestCode", 10));
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -110,6 +110,7 @@ public class DetailsActivity extends SharedVariables {
     private void goToEditActivity(){
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(StockMessage, newStock);
+        intent.putExtra("DetailsData", "UpdateStock");
         startActivityForResult(intent,requestCode);
     }
 }

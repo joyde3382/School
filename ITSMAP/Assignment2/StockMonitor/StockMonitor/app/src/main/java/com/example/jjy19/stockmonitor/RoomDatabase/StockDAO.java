@@ -1,5 +1,6 @@
 package com.example.jjy19.stockmonitor.RoomDatabase;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -13,10 +14,13 @@ import java.util.List;
 @Dao
 public interface StockDAO {
 
-    @Query("SELECT * FROM stock")
-    List<Stock> getAll();
+//    @Query("SELECT * FROM stock")
+//    List<Stock> getAll();
 
-    @Query("select * from stock where sid in (:StockIDs)")
+    @Query("SELECT * FROM stock_table")
+    LiveData<List<Stock>> getAll();
+
+    @Query("select * from stock_table where sid in (:StockIDs)")
     List<Stock> loadAllByIds(int[] StockIDs);
 
     @Insert
@@ -24,7 +28,6 @@ public interface StockDAO {
 
     @Insert
     void insert(Stock... stocks);
-
 
     @Update
     void update(Stock... stocks);

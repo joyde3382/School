@@ -37,6 +37,7 @@ public class OverviewActivity extends SharedVariables {
     Boolean initChecker = true;
 
 
+    int stockPosition;
     private StockService boundService;
     //private ServiceConnection myServiceConnection;
     private AsyncTask mMyTask;
@@ -100,7 +101,7 @@ public class OverviewActivity extends SharedVariables {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Stock tempStock = stocks.get(position);
-
+                stockPosition = position;
                 goToDetailsActivity(tempStock);
             }
         });
@@ -147,20 +148,21 @@ public class OverviewActivity extends SharedVariables {
                         //adapter.addAll(stocks);
 
                     } else if (str == "Add") {
-                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+//                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
                         adapter.add(tempStock);
-//                        adapter.addAll(stocks);
 
                     } else if (str == "UpdateStock") {
                         //adapter.clear();
                         //stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                        adapter.remove((Stock) stockListView.getItemAtPosition(tempStock.getSid() - 1));
-                        adapter.insert(tempStock, tempStock.getSid() - 1);
+                        adapter.remove(tempStock);
+                        adapter.add(tempStock);
+//                        adapter.remove((Stock) stockListView.getItemAtPosition(stockPosition));
+//                        adapter.insert(tempStock, stockPosition);
 
                     } else if (str == "Delete") {
                         //adapter.clear();
                         //stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                        adapter.remove((Stock) stockListView.getItemAtPosition(tempStock.getSid() - 1));
+                        adapter.remove((Stock) stockListView.getItemAtPosition(stockPosition));
 
                     }
 
@@ -205,6 +207,13 @@ public class OverviewActivity extends SharedVariables {
 
             }
 
+            else if (tempRequestCode == requestCodes.Update.getValue()) {
+                Toast("Stock has been updated!");
+
+                boundService.updateStock(newStock);
+
+            }
+
             updateUI();
         }
 
@@ -239,7 +248,7 @@ public class OverviewActivity extends SharedVariables {
     // Update is used to set text and image after a restart of the app, or a new stock is created
     private void updateUI(){
 
-        boundService.getStocks();
+        boundService.requestStockData();
 
     }
 

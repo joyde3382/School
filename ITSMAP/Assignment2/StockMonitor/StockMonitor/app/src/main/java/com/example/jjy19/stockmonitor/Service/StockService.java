@@ -2,7 +2,6 @@ package com.example.jjy19.stockmonitor.Service;
 
 import android.app.Service;
 import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
@@ -10,7 +9,6 @@ import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,7 +28,6 @@ import java.util.List;
 public class StockService extends Service {
 
     private List<Stock> stocks;
-
 
     StockDatabase db;
     Stock newStock;
@@ -73,73 +70,8 @@ public class StockService extends Service {
                         }
 
                         while (true) {
-
                             stocks = db.StockDao().getAll();
-
-                            RequestQueue queue = Volley.newRequestQueue(StockService.this);
-
-                            for (int i = 0; i < stocks.size(); i++) {
-
-                                final Stock tempStock = stocks.get(i);
-
-                                String tempStockSymbol = tempStock.getSymbol();
-
-                                /***** Get Iextrading data for stock ******/
-
-                                String url = "https://ws-api.iextrading.com/1.0/stock/" + tempStockSymbol + "/delayed-quote";
-
-                                // Request a string response from the provided URL.
-                                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                                        new Response.Listener<String>() {
-                                            @Override
-                                            public void onResponse(String response) {
-
-//                                                Toast toast = Toast.makeText(getApplicationContext(), "Recieved response string", Toast.LENGTH_SHORT);
-//                                                toast.show();
-
-                                                try {
-                                                    data = new JSONObject(response);
-                                                } catch (Exception e) {
-                                                    System.out.println("Exception " + e.getMessage());
-                                                }
-
-                                                try {
-
-                                                    double delayedPrice = data.getDouble("delayedPrice");
-
-                                                    if (delayedPrice != tempStock.getStockPrice()) {
-
-                                                        tempStock.setStockPrice(delayedPrice);
-
-                                                        updateStock(tempStock);
-
-                                                        Intent intent = new Intent();
-                                                        intent.setAction("filter_string");
-                                                        intent.putExtra("Stock", tempStock);
-                                                        //intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
-                                                        intent.putExtra("ServiceData", "UpdateStock");
-
-                                                        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-                                                    }
-
-                                                } catch (final JSONException e) {
-                                                    Log.e(TAG, "Json parsing error: " + e.getMessage());
-                                                }
-                                            }
-                                        }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-
-                                        //Toast toast = Toast.makeText(getApplicationContext(), "That didn't work!", Toast.LENGTH_SHORT);
-                                        //toast.show();
-
-                                    }
-                                });
-
-                                /***** Get price data ******/
-                                // Add the request to the RequestQueue.
-                                queue.add(stringRequest);
-                            }
+                            requestStockData();
                             Thread.sleep(5000);
                         }
                     } catch(Exception e){
@@ -159,7 +91,6 @@ public class StockService extends Service {
         newStock = intent.getParcelableExtra("stock");
         return binder;
     }
-
 
     public void deleteStock(final Stock stock){
 
@@ -188,6 +119,65 @@ public class StockService extends Service {
         t.start();
     }
 
+    public void requestStockData() {
+
+        RequestQueue queue = Volley.newRequestQueue(StockService.this);
+
+        for (int i = 0; i < stocks.size(); i++)
+        {
+
+            final Stock tempStock = stocks.get(i);
+
+            String tempStockSymbol = tempStock.getSymbol();
+
+            /***** Get Iextrading data for stock ******/
+
+            String url = "https://ws-api.iextrading.com/1.0/stock/" + tempStockSymbol + "/delayed-quote";
+
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            try {
+                                data = new JSONObject(response);
+                            } catch (Exception e) {
+                                System.out.println("Exception " + e.getMessage());
+                            }
+
+                            try {
+
+                                double delayedPrice = data.getDouble("delayedPrice");
+
+                                if (delayedPrice != tempStock.getStockPrice()) {
+
+                                    tempStock.setStockPrice(delayedPrice);
+
+                                    updateStock(tempStock);
+
+                                }
+
+                            } catch (final JSONException e) {
+                                Log.e(TAG, "Json parsing error: " + e.getMessage());
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    //Toast toast = Toast.makeText(getApplicationContext(), "That didn't work!", Toast.LENGTH_SHORT);
+                    //toast.show();
+
+                }
+            });
+
+            /***** Get price data ******/
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+        }
+
+    }
 
     public void addStock(final Stock stock){
 
@@ -197,13 +187,63 @@ public class StockService extends Service {
                 try {
 
                     db.StockDao().insert(stock);
+
+                    Intent intent = new Intent();
+                    intent.setAction("filter_string");
+                    intent.putExtra("Stock", stock);
+                    intent.putExtra("ServiceData", "Add");
+
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread t = new Thread(r);
+        t.start();
+    }
+
+    public void getStocks(){
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    stocks = db.StockDao().getAll();
+
+                    Intent intent = new Intent();
+                    intent.setAction("filter_string");
+                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+                    intent.putExtra("ServiceData", "Update");
+
+                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread t = new Thread(r);
+        t.start();
+    }
+
+    public void updateStock(final Stock stock){
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    db.StockDao().update(stock);
                     stocks = db.StockDao().getAll();
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
                     intent.putExtra("Stock", stock);
-                    //intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
-                    intent.putExtra("ServiceData", "Add");
+                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
+                    intent.putExtra("ServiceData", "UpdateStock");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
@@ -243,48 +283,4 @@ public class StockService extends Service {
 //        Thread t = new Thread(r);
 //        t.start();
 //    }
-
-    public void getStocks(){
-
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    stocks = db.StockDao().getAll();
-
-                    Intent intent = new Intent();
-                    intent.setAction("filter_string");
-                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
-                    intent.putExtra("ServiceData", "Update");
-
-                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread t = new Thread(r);
-        t.start();
-    }
-
-    public void updateStock(final Stock stock){
-
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    db.StockDao().update(stock);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread t = new Thread(r);
-        t.start();
-    }
-
 }

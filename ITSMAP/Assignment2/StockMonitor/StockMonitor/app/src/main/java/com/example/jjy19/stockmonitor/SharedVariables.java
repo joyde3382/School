@@ -35,7 +35,8 @@ public abstract class SharedVariables extends Activity {
     enum requestCodes {
 
         Delete(102),
-        Add(103);
+        Add(103),
+        Update(104);
 
 
         private final int value;

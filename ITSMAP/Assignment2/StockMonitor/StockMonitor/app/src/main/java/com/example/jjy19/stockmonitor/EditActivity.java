@@ -92,12 +92,24 @@ public class EditActivity extends SharedVariables {
         }
 
         // Create new stock object with the input values from user
-        Stock stock = new Stock(nameText.getText().toString(),symbolText.getText().toString(), Double.parseDouble(priceText.getText().toString()), Integer.parseInt(stockText.getText().toString()), sectorValue);
-        stock.setSymbol(symbolText.getText().toString());
+        newStock.setCompanyName(nameText.getText().toString());
+        newStock.setSymbol(symbolText.getText().toString());
+        newStock.setStockPrice(Double.parseDouble(priceText.getText().toString()));
+        newStock.setNumberOfStocks(Integer.parseInt(stockText.getText().toString()));
+        newStock.setStockSector(sectorValue);
+//        Stock stock = new Stock(nameText.getText().toString(),symbolText.getText().toString(), Double.parseDouble(priceText.getText().toString()), Integer.parseInt(stockText.getText().toString()), sectorValue);
+//        stock.setSymbol(symbolText.getText().toString());
 
+        String message = getIntent().getStringExtra("DetailsData");
 
-        intent.putExtra(StockMessage,stock);
-        intent.putExtra("requestCode", requestCodes.Add.getValue());
+        if (message.equals("UpdateStock")) {
+            intent.putExtra("requestCode", requestCodes.Update.getValue());
+        }
+        else {
+            intent.putExtra("requestCode", requestCodes.Add.getValue());
+        }
+
+        intent.putExtra(StockMessage,newStock);
         setResult(RESULT_OK, intent);
 
         finish();
