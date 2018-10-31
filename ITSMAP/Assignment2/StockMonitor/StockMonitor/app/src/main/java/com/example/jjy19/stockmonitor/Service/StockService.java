@@ -1,26 +1,15 @@
 package com.example.jjy19.stockmonitor.Service;
 
 import android.app.Service;
-import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.jjy19.stockmonitor.Model.StockViewModel;
 import com.example.jjy19.stockmonitor.Objects.Stock;
-import com.example.jjy19.stockmonitor.RoomDatabase.StockDatabase;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +17,9 @@ import java.util.List;
 public class StockService extends Service {
 
     private List<Stock> stocks;
-
-    StockDatabase db;
+    StockViewModel stockViewModel;
     Stock newStock;
     Context context = this;
-    JSONObject data = null;
     private String TAG = StockService.class.getSimpleName();
 
     public class serviceBinder extends Binder {
@@ -59,20 +46,16 @@ public class StockService extends Service {
             @Override
             public void run() {
                     try {
-                        // db = StockDatabase.getInstance(getApplicationContext());
-                        db = Room.databaseBuilder(getApplicationContext(),
-                                StockDatabase.class, "Task-database").build();
-
-                        List<Stock> tempstocks = db.StockDao().getAll();
-
-                        if(tempstocks.isEmpty()) {
-                            db.StockDao().insertAll(Stock.populateData());
-                        }
 
                         while (true) {
-                            stocks = db.StockDao().getAll();
-                            requestStockData();
-                            Thread.sleep(5000);
+
+                            Intent intent = new Intent();
+                            intent.setAction("filter_string");
+                            intent.putExtra("ServiceData", "UpdateStocks");
+
+                            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+
+                            Thread.sleep(20000);
                         }
                     } catch(Exception e){
                         // TODO Auto-generated catch block
@@ -85,7 +68,6 @@ public class StockService extends Service {
     }
 
     @Override
-    //very important! return your IBinder (your custom Binder)
     public IBinder onBind(Intent intent) {
 
         newStock = intent.getParcelableExtra("stock");
@@ -99,13 +81,9 @@ public class StockService extends Service {
             public void run() {
                 try {
 
-                    db.StockDao().delete(stock);
-                   // stocks = db.StockDao().getAll();
-
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
                     intent.putExtra("Stock", stock);
-//                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                     intent.putExtra("ServiceData", "Delete");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -119,74 +97,12 @@ public class StockService extends Service {
         t.start();
     }
 
-    public void requestStockData() {
-
-        RequestQueue queue = Volley.newRequestQueue(StockService.this);
-
-        for (int i = 0; i < stocks.size(); i++)
-        {
-
-            final Stock tempStock = stocks.get(i);
-
-            String tempStockSymbol = tempStock.getSymbol();
-
-            /***** Get Iextrading data for stock ******/
-
-            String url = "https://ws-api.iextrading.com/1.0/stock/" + tempStockSymbol + "/delayed-quote";
-
-            // Request a string response from the provided URL.
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-
-                            try {
-                                data = new JSONObject(response);
-                            } catch (Exception e) {
-                                System.out.println("Exception " + e.getMessage());
-                            }
-
-                            try {
-
-                                double delayedPrice = data.getDouble("delayedPrice");
-
-                                if (delayedPrice != tempStock.getStockPrice()) {
-
-                                    tempStock.setStockPrice(delayedPrice);
-
-                                    updateStock(tempStock);
-
-                                }
-
-                            } catch (final JSONException e) {
-                                Log.e(TAG, "Json parsing error: " + e.getMessage());
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    //Toast toast = Toast.makeText(getApplicationContext(), "That didn't work!", Toast.LENGTH_SHORT);
-                    //toast.show();
-
-                }
-            });
-
-            /***** Get price data ******/
-            // Add the request to the RequestQueue.
-            queue.add(stringRequest);
-        }
-
-    }
-
     public void addStock(final Stock stock){
 
         Runnable r = new Runnable() {
             @Override
             public void run() {
                 try {
-
-                    db.StockDao().insert(stock);
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
@@ -211,7 +127,7 @@ public class StockService extends Service {
             public void run() {
                 try {
 
-                    stocks = db.StockDao().getAll();
+                    stocks = stockViewModel.getAllStocks().getValue();
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
@@ -236,13 +152,9 @@ public class StockService extends Service {
             public void run() {
                 try {
 
-                    db.StockDao().update(stock);
-                    stocks = db.StockDao().getAll();
-
                     Intent intent = new Intent();
                     intent.setAction("filter_string");
                     intent.putExtra("Stock", stock);
-                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
                     intent.putExtra("ServiceData", "UpdateStock");
 
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
@@ -255,32 +167,4 @@ public class StockService extends Service {
         Thread t = new Thread(r);
         t.start();
     }
-
-//    public void addStocks(final List<Stock> stockList){
-//
-//        Runnable r = new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//
-//                    db.StockDao().insertAll(stockList);
-//                    stocks = db.StockDao().getAll();
-//
-//                    Intent intent = new Intent();
-//                    intent.setAction("filter_string");
-////                    intent.putExtra("Stock", stock);
-//                    intent.putParcelableArrayListExtra("ServiceStockList", (ArrayList<? extends Parcelable>) stocks);
-//                    intent.putExtra("ServiceData", "AddList");
-//
-//                    LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-//
-//                } catch (Exception e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        Thread t = new Thread(r);
-//        t.start();
-//    }
 }

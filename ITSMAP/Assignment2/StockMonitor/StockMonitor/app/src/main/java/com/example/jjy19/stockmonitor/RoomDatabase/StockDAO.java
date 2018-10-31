@@ -18,7 +18,7 @@ public interface StockDAO {
 //    List<Stock> getAll();
 
     @Query("SELECT * FROM stock_table")
-    LiveData<List<Stock>> getAll();
+    LiveData<List<Stock>> getAllStocks();
 
     @Query("select * from stock_table where sid in (:StockIDs)")
     List<Stock> loadAllByIds(int[] StockIDs);
@@ -34,6 +34,9 @@ public interface StockDAO {
 
     @Delete
     void delete(Stock... stocks);
+
+    @Query("DELETE FROM stock_table")
+    void deleteAllStocks();
 
 
 

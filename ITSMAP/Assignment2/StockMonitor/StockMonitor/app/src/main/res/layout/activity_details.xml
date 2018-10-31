@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="134dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:weightSum="100"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="50"
             android:orientation="vertical">
 
@@ -56,6 +56,12 @@
                 tools:layout_editor_absoluteY="143dp" />
 
             <TextView
+                android:id="@+id/details_sellText"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text="@string/SellValue" />
+
+            <TextView
                 android:id="@+id/details_sectorText"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
@@ -64,11 +70,17 @@
                 tools:layout_editor_absoluteX="39dp"
                 tools:layout_editor_absoluteY="183dp" />
 
+            <TextView
+                android:id="@+id/details_timeStampText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/TimeStamp" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="50"
             android:orientation="vertical">
 
@@ -103,6 +115,12 @@
                 tools:layout_editor_absoluteY="96dp" />
 
             <TextView
+                android:id="@+id/details_sell"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:text="TextView" />
+
+            <TextView
                 android:id="@+id/details_sector"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
@@ -111,6 +129,12 @@
                 android:text="TextView"
                 tools:layout_editor_absoluteX="227dp"
                 tools:layout_editor_absoluteY="183dp" />
+
+            <TextView
+                android:id="@+id/details_timeStamp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
         </LinearLayout>
     </LinearLayout>
 

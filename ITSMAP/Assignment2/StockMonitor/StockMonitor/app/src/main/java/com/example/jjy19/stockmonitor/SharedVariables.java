@@ -1,16 +1,16 @@
 package com.example.jjy19.stockmonitor;
 
-import android.app.Activity;
-import android.content.ServiceConnection;
+
+import android.app.Application;
 import android.widget.Toast;
 
-public abstract class SharedVariables extends Activity {
+public class SharedVariables extends Application {
 
     // stock key for parsing stock objects
     final String StockMessage = "stock";
 
     Toast toast;
-    ServiceConnection myServiceConnection;
+
 
     public boolean bound = false;
     // default request code

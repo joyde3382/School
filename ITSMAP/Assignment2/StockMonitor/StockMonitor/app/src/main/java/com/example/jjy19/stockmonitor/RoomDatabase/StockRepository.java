@@ -15,31 +15,32 @@ public class StockRepository {
     public StockRepository(Application application) {
         StockDatabase db = StockDatabase.getInstance(application);
         stockDao = db.StockDao();
-        allStocks = stockDao.getAll();
+        allStocks = stockDao.getAllStocks();
     }
 
     public void insert(Stock stock) {
-        new InsertNoteAsyncTask(stockDao).execute(stock);
+        new InsertStockAsyncTask(stockDao).execute(stock);
     }
 
     public void update(Stock stock) {
-        new UpdateNoteAsyncTask(stockDao).execute(stock);
+        new UpdateStockAsyncTask(stockDao).execute(stock);
     }
     public void delete(Stock stock) {
-        new DeleteNoteAsyncTask(stockDao).execute(stock);
+        new DeleteStockAsyncTask(stockDao).execute(stock);
     }
-    public void deleteAllNotes(Stock stock) {
-        new DeleteAllNotesAsyncTask(stockDao).execute();
+
+    public void deleteAllStocks() {
+        new DeleteAllStocksAsyncTask(stockDao).execute();
     }
 
     public LiveData<List<Stock>> getAllStocks(){
         return allStocks;
     }
 
-    private static class InsertNoteAsyncTask extends AsyncTask<Stock, Void, Void> {
+    private static class InsertStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;
 
-        private InsertNoteAsyncTask(StockDAO stockDao) {
+        private InsertStockAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
         }
 
@@ -50,10 +51,10 @@ public class StockRepository {
         }
     }
 
-    private static class UpdateNoteAsyncTask extends AsyncTask<Stock, Void, Void> {
+    private static class UpdateStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;
 
-        private UpdateNoteAsyncTask(StockDAO stockDao) {
+        private UpdateStockAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
         }
 
@@ -65,30 +66,30 @@ public class StockRepository {
     }
 
 
-    private static class DeleteNoteAsyncTask extends AsyncTask<Stock, Void, Void> {
+    private static class DeleteStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;
 
-        private DeleteNoteAsyncTask(StockDAO stockDao) {
+        private DeleteStockAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
         }
 
         @Override
         protected Void doInBackground(Stock... stocks) {
-            stockDao.update(stocks[0]);
+            stockDao.delete(stocks[0]);
             return null;
         }
     }
 
-    private static class DeleteAllNotesAsyncTask extends AsyncTask<Void, Void, Void> {
+    private static class DeleteAllStocksAsyncTask extends AsyncTask<Void, Void, Void> {
         private StockDAO stockDao;
 
-        private DeleteAllNotesAsyncTask(StockDAO stockDao) {
+        private DeleteAllStocksAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            stockDao.update();
+            stockDao.deleteAllStocks();
             return null;
         }
     }

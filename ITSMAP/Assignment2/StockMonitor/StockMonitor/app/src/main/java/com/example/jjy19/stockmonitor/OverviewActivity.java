@@ -1,58 +1,65 @@
 package com.example.jjy19.stockmonitor;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.jjy19.stockmonitor.Model.StockViewModel;
 import com.example.jjy19.stockmonitor.Objects.Stock;
-import com.example.jjy19.stockmonitor.RoomDatabase.StockDatabase;
 import com.example.jjy19.stockmonitor.Service.StockService;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
-public class OverviewActivity extends SharedVariables {
+public class OverviewActivity extends AppCompatActivity {
 
     Button addStockButton;
-    TextView nameText, priceText;
     Stock newStock;
-    ImageView sectorImage;
-    ListView stockListView;
+    RecyclerView stockRecyclerView;
     CustomListAdapter adapter;
     Boolean initChecker = true;
 
+    private StockViewModel stockViewModel;
+    private SwipeRefreshLayout swipeContainer;
 
-    int stockPosition;
-    private StockService boundService;
-    //private ServiceConnection myServiceConnection;
-    private AsyncTask mMyTask;
-    // private List<Stock> stocks;
-    private List<Stock> stocks;
-//    private CustomListAdapter adapter;
-    boolean initList = true;
-    int tempPositon;
+    Stock tempStock;
+    JSONObject data = null;
+    StockService boundService;
+    List<Stock> stocks;
 
-    StockDatabase db;
+    SharedVariables sV;
+    ServiceConnection myServiceConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
+
+        sV = (SharedVariables) getApplication();
 
         myServiceConnection = new ServiceConnection() {
             public void onServiceConnected(ComponentName className, IBinder service) {
@@ -63,6 +70,7 @@ public class OverviewActivity extends SharedVariables {
                 // cast its IBinder to a concrete class and directly access it.
                 //ref: http://developer.android.com/reference/android/app/Service.html
                 boundService = ((StockService.serviceBinder) service).getService();
+                sV.bound = true;
                 //Log.d(LOG, "Counting service connected");
 
             }
@@ -70,22 +78,74 @@ public class OverviewActivity extends SharedVariables {
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 boundService = null;
+                sV.bound = false;
             }
         };
 
         // initialize ui elements
         initUIElements();
 
+        adapter = new CustomListAdapter();
+        stockRecyclerView.setAdapter(adapter);
+
+        stockViewModel = ViewModelProviders.of(this).get(StockViewModel.class);
+        stockViewModel.getAllStocks().observe(this, new Observer<List<Stock>>() {
+            @Override
+            public void onChanged(@Nullable List<Stock> stocks) {
+
+                adapter.setStocks(stocks);
+            }
+        });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                stockViewModel.delete(adapter.getStockAt(viewHolder.getAdapterPosition()));
+                sV.Toast("Stock deleted");
+            }
+        }).attachToRecyclerView(stockRecyclerView);
+
+        adapter.setOnItemClickListener(new CustomListAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Stock tempStock = stockViewModel.getAllStocks().getValue().get(position);
+                goToDetailsActivity(tempStock);
+            }
+
+            @Override
+            public void onItemLongClick(int position, View v) {
+
+            }
+        });
+
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+
+            public void onRefresh() {
+
+                RequestQueue queue = Volley.newRequestQueue(OverviewActivity.this);
+                int stockListSize = stockViewModel.getAllStocks().getValue().size();
+                for (int i = 0; i < stockListSize; i++) {
+                    if (stockViewModel.getAllStocks().getValue() != null) {
+                        final Stock updateStock = stockViewModel.getAllStocks().getValue().get(i);
+                        updateStockRequest(updateStock, queue);
+                    }
+                }
+                swipeContainer.setRefreshing(false);
+            }
+        });
+
+        // setup localBroadcastMananger
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
         lbm.registerReceiver(receiver, new IntentFilter("filter_string"));
-
-        newStock = getIntent().getParcelableExtra(StockMessage); // TODO Get from db instead
-
-        Intent intent = new Intent(OverviewActivity.this, StockService.class);
-        bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
-        bound = true;
-
-        // update the stock object (if phone is flipped/app is restarted)
 
         addStockButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,31 +153,6 @@ public class OverviewActivity extends SharedVariables {
                 goToEditActivity();
             }
         });
-
-        // TODO put in update()
-
-        stockListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Stock tempStock = stocks.get(position);
-                stockPosition = position;
-                goToDetailsActivity(tempStock);
-            }
-        });
-
-        new CountDownTimer(400, 400) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            public void onFinish() {
-                updateUI();
-            }
-        }.start();
-
 
     }
 
@@ -128,59 +163,94 @@ public class OverviewActivity extends SharedVariables {
             if (intent != null) {
 
                 String str = intent.getStringExtra("ServiceData");
-
-                Stock tempStock = intent.getParcelableExtra("Stock");
-
-
+                RequestQueue queue = Volley.newRequestQueue(OverviewActivity.this);
                 if (initChecker)
                 {
-                    stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                    adapter = new CustomListAdapter(OverviewActivity.this, R.layout.adapter_layout, (ArrayList<Stock>) stocks);
+                    stocks = stockViewModel.getAllStocks().getValue();
                     initChecker = false;
                 }
 
-
                 try {
 
+                    tempStock = intent.getParcelableExtra("Stock");
+
+                    int stockListSize = stockViewModel.getAllStocks().getValue().size();
 
                     if (str == "Update") {
-                        //stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                        //adapter.addAll(stocks);
 
                     } else if (str == "Add") {
-//                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                        adapter.add(tempStock);
+                        stockViewModel.insert(tempStock);
+                        updateStockRequest(tempStock, queue);
 
                     } else if (str == "UpdateStock") {
-                        //adapter.clear();
-                        //stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                        adapter.remove(tempStock);
-                        adapter.add(tempStock);
-//                        adapter.remove((Stock) stockListView.getItemAtPosition(stockPosition));
-//                        adapter.insert(tempStock, stockPosition);
+                        stockViewModel.update(tempStock);
+
+                    } else if (str == "UpdateStocks") {
+
+
+                        for (int i = 0; i < stockListSize; i++) {
+
+                            if (stockViewModel.getAllStocks().getValue() != null) {
+
+                                final Stock updateStock = stockViewModel.getAllStocks().getValue().get(i);
+
+                                updateStockRequest(updateStock, queue);
+
+                            }
+                        }
+
 
                     } else if (str == "Delete") {
-                        //adapter.clear();
-                        //stocks = intent.getParcelableArrayListExtra("ServiceStockList");
-                        adapter.remove((Stock) stockListView.getItemAtPosition(stockPosition));
-
+                        stockViewModel.delete(tempStock);
                     }
 
-
                     adapter.notifyDataSetChanged();
-                    stockListView.setAdapter(adapter);
-
 
                 } catch (Exception e)
                 {
                     e.printStackTrace();
                 }
 
-                Toast(str);
-
             }
         }
     };
+
+    public void updateStockRequest(final Stock stock, RequestQueue queue){
+        String tempStockSymbol = stock.getSymbol();
+
+        /***** Get Iextrading data for stock ******/
+
+        String url = "https://ws-api.iextrading.com/1.0/stock/" + tempStockSymbol + "/quote";
+
+        // Request a string response from the provided URL.
+        JsonObjectRequest mRequest = new JsonObjectRequest(Request.Method.GET, url, (JSONObject) null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            double latestPrice = response.getDouble("latestPrice");
+
+                            stock.setPrimaryExchange(latestPrice-stock.getStockPrice());
+                            stock.setLatestValue(latestPrice);
+                            stockViewModel.update(stock);
+
+
+                        } catch (final JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(mRequest);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -188,96 +258,103 @@ public class OverviewActivity extends SharedVariables {
 
         if(resultCode == RESULT_OK) {
 
-            newStock = data.getExtras().getParcelable(StockMessage);
+            newStock = data.getExtras().getParcelable(sV.StockMessage);
 
             int tempRequestCode = data.getIntExtra("requestCode", requestCode);
 
-
-            if (tempRequestCode == requestCodes.Delete.getValue() )
+            if (tempRequestCode == SharedVariables.requestCodes.Delete.getValue() )
             {
-                Toast("Stock has been deleted");
-                boundService.deleteStock(newStock);
-
+                sV.Toast("Stock has been deleted");
             }
 
-            else if (tempRequestCode == requestCodes.Add.getValue()) {
-                Toast("Stock has been saved!");
-
-                boundService.addStock(newStock);
-
+            else if (tempRequestCode == SharedVariables.requestCodes.Add.getValue()) {
+                sV.Toast("Stock has been saved!");
             }
 
-            else if (tempRequestCode == requestCodes.Update.getValue()) {
-                Toast("Stock has been updated!");
-
-                boundService.updateStock(newStock);
-
+            else if (tempRequestCode == SharedVariables.requestCodes.Update.getValue()) {
+                sV.Toast("Stock has been updated!");
             }
 
-            updateUI();
         }
 
         else if (resultCode == RESULT_CANCELED){
-            Toast("Cancel Clicked");
+            sV.Toast("Cancel Clicked");
         }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
 
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable("stockObject", newStock);
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        outState.putParcelable("stockObject", newStock);
+//
+//        super.onSaveInstanceState(outState);
+//        Log.d("Main Activity", "onSaveInstanceState called!");
+//
+//    }
 
-        super.onSaveInstanceState(outState);
-        Log.d("Main Activity", "onSaveInstanceState called!");
-
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        Log.d("Main Activity", "onRestoreInstanceState called!");
-
-        newStock = savedInstanceState.getParcelable("stockObject");
-
-        updateUI();
-    }
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+//        Log.d("Main Activity", "onRestoreInstanceState called!");
+//
+//        newStock = savedInstanceState.getParcelable("stockObject");
+//
+//        updateUI();
+//    }
 
     // Update is used to set text and image after a restart of the app, or a new stock is created
     private void updateUI(){
 
-        boundService.requestStockData();
+//        boundService.requestStockData();
 
     }
 
     private void goToDetailsActivity(Stock stock){
         Intent intent = new Intent(OverviewActivity.this, DetailsActivity.class);
-        intent.putExtra(StockMessage, stock);
-        startActivityForResult(intent,requestCode);
+        intent.putExtra(sV.StockMessage, stock);
+        startActivityForResult(intent,sV.requestCode);
     }
 
     private void goToEditActivity(){
         Intent intent = new Intent(OverviewActivity.this, EditActivity.class);
-        intent.putExtra(StockMessage, newStock);
-        startActivityForResult(intent,requestCode);
+        intent.putExtra(sV.StockMessage, newStock);
+        intent.putExtra("DetailsData", "AddStock");
+        startActivityForResult(intent,sV.requestCode);
     }
 
     private void initUIElements(){
-        nameText = findViewById(R.id.overView_stockName);
-        priceText = findViewById(R.id.overView_stockPrice);
-        sectorImage = findViewById(R.id.overView_sectorPic);
+        swipeContainer = findViewById(R.id.swipeContainer);
         addStockButton = findViewById(R.id.addStockBtn);
-        stockListView = findViewById(R.id.stockListView);
+        stockRecyclerView = findViewById(R.id.stockRecyclerView);
+        stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = new Intent(OverviewActivity.this, StockService.class);
+        bindService(intent, myServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // Unbind from the service
+        if (sV.bound) {
+            unbindService(myServiceConnection);
+            sV.bound = false;
+        }
     }
 
     @Override
     protected void onDestroy() {
 
-        unbindService(myServiceConnection);
-        bound = false;
-
         super.onDestroy();
     }
+
+
 }
