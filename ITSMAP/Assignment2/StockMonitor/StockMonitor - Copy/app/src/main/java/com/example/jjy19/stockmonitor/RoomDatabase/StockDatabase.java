@@ -1,6 +1,5 @@
 package com.example.jjy19.stockmonitor.RoomDatabase;
 
-import android.app.Application;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
@@ -20,7 +19,7 @@ public abstract class StockDatabase extends RoomDatabase {
 
     public abstract StockDAO StockDao();
 
-    public static synchronized StockDatabase getInstance(Application context) {
+    public static synchronized StockDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     StockDatabase.class, "note_database")

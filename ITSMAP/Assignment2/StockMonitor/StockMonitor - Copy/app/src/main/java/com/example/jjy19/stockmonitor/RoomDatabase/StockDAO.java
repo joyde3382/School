@@ -18,7 +18,7 @@ public interface StockDAO {
 //    List<Stock> getAll();
 
     @Query("SELECT * FROM stock_table")
-    List<Stock> getAllStocks();
+    LiveData<List<Stock>> getAllStocks();
 
     @Query("select * from stock_table where sid in (:StockIDs)")
     List<Stock> loadAllByIds(int[] StockIDs);

@@ -1,32 +1,22 @@
 package com.example.jjy19.stockmonitor.RoomDatabase;
 
 import android.app.Application;
-import android.content.Intent;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
-import android.os.Parcelable;
-import android.support.v4.content.LocalBroadcastManager;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class StockRepository {
     private StockDAO stockDao;
-    private List<Stock> allStocks;
-    StockDatabase db;
+    private LiveData<List<Stock>> allStocks;
 
-    public StockRepository(final Application application) {
-        // run in asynctask
-        db = StockDatabase.getInstance(application);
+    public StockRepository(Application application) {
+        StockDatabase db = StockDatabase.getInstance(application);
         stockDao = db.StockDao();
         allStocks = stockDao.getAllStocks();
     }
-
-  //  public StockDatabase initDb(Application application){
-    //    new initDbAsyncTask(application).execute();
-    //}
 
     public void insert(Stock stock) {
         new InsertStockAsyncTask(stockDao).execute(stock);
@@ -43,26 +33,12 @@ public class StockRepository {
         new DeleteAllStocksAsyncTask(stockDao).execute();
     }
 
-    public List<Stock> getAllStocks() throws ExecutionException, InterruptedException {
+    public LiveData<List<Stock>> getAllStocks(){
+        // asynctask result list<Stock>
+        // stockDao.get
 
-        return new getAllStocksAsyncTask(stockDao).execute().get();
+        return allStocks;
     }
-
-    private static class getAllStocksAsyncTask extends AsyncTask<Void, Void, List<Stock>> {
-        private StockDAO stockDao;
-
-        private getAllStocksAsyncTask(StockDAO stockDao) {
-            this.stockDao = stockDao;
-        }
-
-        @Override
-        protected List<Stock> doInBackground(Void... voids) {
-
-            return stockDao.getAllStocks();
-        }
-    }
-
-
 
     private static class InsertStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;

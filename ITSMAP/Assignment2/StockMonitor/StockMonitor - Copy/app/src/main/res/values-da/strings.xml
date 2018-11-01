@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Overview Activity strings -->
+    <string name="app_name">StockMonitor</string>
+    <string name="StockType">Facebook</string>
+    <string name="StockTag">Min Aktie:</string>
+    <string name="StockPrice">Købt for: %1$3.2f</string>
+    <string name="OverviewButton">Detaljer</string>
+    <string name="CompanyName">Firma</string>
+    <string name="BoughtPrice">Indkøbspris</string>
+    <string name="SellValue">Salgsværdi</string>
+
+    <!-- Details Activity strings -->
+    <string name="StockName">Navn:</string>
+    <string name="StockSymbol">Symbol:</string>
+    <string name="StockTag2">Pris:</string>
+    <string name="NumberOfStocks">#Aktier:</string>
+    <string name="Sector">Sektor:</string>
+    <string name="BackButton">Tilbage</string>
+    <string name="EditButton">Rediger</string>
+    <string name="DeleteButton">Slet</string>
+    <string name="TimeStamp">Købt:</string>
+
+
+    <!-- Edit Activity strings -->
+    <string name="CheckBox1">Teknologi</string>
+    <string name="CheckBox2">Sundhedsområdet</string>
+    <string name="CheckBox3">Grundlæggende materialer</string>
+    <string name="CancelButton">Afbryd</string>
+    <string name="SaveButton">Gem</string>
+    <string name="MissingName">Sæt et navn</string>
+    <string name="MissingSymbol">Sæt et symbol</string>
+    <string name="MissingPrice">Sæt en pris</string>
+    <string name="MissingStock">Sæt en aktie</string>
+    <string name="nameHint">Skriv et aktienavn</string>
+    <string name="symbolHint">Skriv et aktiesymbol</string>
+    <string name="PriceHint">Sæt en aktiepris</string>
+    <string name="StockHint">Vælg antal aktier</string>
+
+</resources>

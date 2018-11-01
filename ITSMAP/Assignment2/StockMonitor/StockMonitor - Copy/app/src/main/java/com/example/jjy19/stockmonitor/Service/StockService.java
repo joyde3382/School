@@ -127,7 +127,7 @@ public class StockService extends Service {
             public void run() {
                 try {
 
-                    stocks = stockViewModel.getAllStocks();
+                    stocks = stockViewModel.getAllStocks().getValue();
 
                     Intent intent = new Intent();
                     intent.setAction("filter_string");

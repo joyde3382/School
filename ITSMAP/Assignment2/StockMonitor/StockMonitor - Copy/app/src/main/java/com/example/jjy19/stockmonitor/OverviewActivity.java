@@ -34,7 +34,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class OverviewActivity extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class OverviewActivity extends AppCompatActivity {
     CustomListAdapter adapter;
     Boolean initChecker = true;
 
-    StockViewModel stockViewModel;
+    private StockViewModel stockViewModel;
     private SwipeRefreshLayout swipeContainer;
 
     Stock tempStock;
@@ -89,22 +88,14 @@ public class OverviewActivity extends AppCompatActivity {
         adapter = new CustomListAdapter();
         stockRecyclerView.setAdapter(adapter);
 
-        try {
-            stockViewModel = new StockViewModel(getApplicationContext());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        stockViewModel = ViewModelProviders.of(this).get(StockViewModel.class);
+        stockViewModel.getAllStocks().observe(this, new Observer<List<Stock>>() {
+            @Override
+            public void onChanged(@Nullable List<Stock> stocks) {
 
-//        stockViewModel = ViewModelProviders.of(this).get(StockViewModel.class);
-//        stockViewModel.getAllStocks().observe(this, new Observer<List<Stock>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Stock> stocks) {
-//
-//                adapter.setStocks(stocks);
-//            }
-//        });
+                adapter.setStocks(stocks);
+            }
+        });
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -116,9 +107,6 @@ public class OverviewActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 stockViewModel.delete(adapter.getStockAt(viewHolder.getAdapterPosition()));
-                stocks = stockViewModel.getAllStocks();
-                adapter.setStocks(stocks);
-                adapter.notifyDataSetChanged();
                 sV.Toast("Stock deleted");
             }
         }).attachToRecyclerView(stockRecyclerView);
@@ -126,7 +114,7 @@ public class OverviewActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new CustomListAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Stock tempStock = stockViewModel.getAllStocks().get(position);
+                Stock tempStock = stockViewModel.getAllStocks().getValue().get(position);
                 goToDetailsActivity(tempStock);
             }
 
@@ -144,10 +132,10 @@ public class OverviewActivity extends AppCompatActivity {
             public void onRefresh() {
 
                 RequestQueue queue = Volley.newRequestQueue(OverviewActivity.this);
-                int stockListSize = stockViewModel.getAllStocks().size();
+                int stockListSize = stockViewModel.getAllStocks().getValue().size();
                 for (int i = 0; i < stockListSize; i++) {
-                    if (stockViewModel.getAllStocks() != null) {
-                        final Stock updateStock = stockViewModel.getAllStocks().get(i);
+                    if (stockViewModel.getAllStocks().getValue() != null) {
+                        final Stock updateStock = stockViewModel.getAllStocks().getValue().get(i);
                         updateStockRequest(updateStock, queue);
                     }
                 }
@@ -178,7 +166,7 @@ public class OverviewActivity extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(OverviewActivity.this);
                 if (initChecker)
                 {
-                    //stocks = stockViewModel.getAllStocks();
+                    stocks = stockViewModel.getAllStocks().getValue();
                     initChecker = false;
                 }
 
@@ -186,12 +174,11 @@ public class OverviewActivity extends AppCompatActivity {
 
                     tempStock = intent.getParcelableExtra("Stock");
 
-                    int stockListSize = stockViewModel.getAllStocks().size();
+                    int stockListSize = stockViewModel.getAllStocks().getValue().size();
 
                     if (str == "Update") {
 
                     } else if (str == "Add") {
-
                         stockViewModel.insert(tempStock);
                         updateStockRequest(tempStock, queue);
 
@@ -203,9 +190,9 @@ public class OverviewActivity extends AppCompatActivity {
 
                         for (int i = 0; i < stockListSize; i++) {
 
-                            if (stockViewModel.getAllStocks() != null) {
+                            if (stockViewModel.getAllStocks().getValue() != null) {
 
-                                final Stock updateStock = stockViewModel.getAllStocks().get(i);
+                                final Stock updateStock = stockViewModel.getAllStocks().getValue().get(i);
 
                                 updateStockRequest(updateStock, queue);
 
@@ -217,8 +204,6 @@ public class OverviewActivity extends AppCompatActivity {
                         stockViewModel.delete(tempStock);
                     }
 
-                    stocks = stockViewModel.getAllStocks();
-                    adapter.setStocks(stocks);
                     adapter.notifyDataSetChanged();
 
                 } catch (Exception e)

@@ -3,35 +3,21 @@ package com.example.jjy19.stockmonitor.Model;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
 import com.example.jjy19.stockmonitor.RoomDatabase.StockRepository;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-public class StockViewModel {
+public class StockViewModel extends AndroidViewModel {
     private StockRepository repository;
-    private List<Stock> allStocks;
+    private LiveData<List<Stock>> allStocks;
 
-    public StockViewModel(final Context context) throws ExecutionException, InterruptedException {
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    repository = new StockRepository((Application) context.getApplicationContext());
-                    allStocks = repository.getAllStocks();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        Thread t = new Thread(r);
-        t.start();
-
+    public StockViewModel(@NonNull Application application) {
+        super(application);
+        repository = new StockRepository(application);
+        allStocks = repository.getAllStocks();
     }
 
     public void insert(Stock stock) {
@@ -50,7 +36,7 @@ public class StockViewModel {
         repository.deleteAllStocks();
     }
 
-    public List<Stock> getAllStocks() {
+    public LiveData<List<Stock>> getAllStocks() {
         return allStocks;
     }
 }
