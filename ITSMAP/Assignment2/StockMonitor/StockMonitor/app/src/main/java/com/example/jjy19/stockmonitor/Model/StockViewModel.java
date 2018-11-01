@@ -1,22 +1,18 @@
 package com.example.jjy19.stockmonitor.Model;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
 import com.example.jjy19.stockmonitor.RoomDatabase.StockRepository;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class StockViewModel {
     private StockRepository repository;
     private List<Stock> allStocks;
 
-    public StockViewModel(final Context context) throws ExecutionException, InterruptedException {
+    public StockViewModel(final Context context) {
         Runnable r = new Runnable() {
             @Override
             public void run() {

@@ -1,7 +1,5 @@
 package com.example.jjy19.stockmonitor;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,7 +8,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class OverviewActivity extends AppCompatActivity {
 
@@ -51,6 +47,8 @@ public class OverviewActivity extends AppCompatActivity {
     JSONObject data = null;
     StockService boundService;
     List<Stock> stocks;
+
+    int randomCounter = 0;
 
     SharedVariables sV;
     ServiceConnection myServiceConnection;
@@ -89,13 +87,8 @@ public class OverviewActivity extends AppCompatActivity {
         adapter = new CustomListAdapter();
         stockRecyclerView.setAdapter(adapter);
 
-        try {
-            stockViewModel = new StockViewModel(getApplicationContext());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        stockViewModel = new StockViewModel(getApplicationContext());
 
 //        stockViewModel = ViewModelProviders.of(this).get(StockViewModel.class);
 //        stockViewModel.getAllStocks().observe(this, new Observer<List<Stock>>() {
@@ -116,6 +109,7 @@ public class OverviewActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 stockViewModel.delete(adapter.getStockAt(viewHolder.getAdapterPosition()));
+
                 stocks = stockViewModel.getAllStocks();
                 adapter.setStocks(stocks);
                 adapter.notifyDataSetChanged();
@@ -216,6 +210,11 @@ public class OverviewActivity extends AppCompatActivity {
                     } else if (str == "Delete") {
                         stockViewModel.delete(tempStock);
                     }
+
+                    for (int i = 0; i < 10000; i++) {
+                        randomCounter++;
+                    }
+
 
                     stocks = stockViewModel.getAllStocks();
                     adapter.setStocks(stocks);
