@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.example.jjy19.stockmonitor.Objects.Stock;
+import com.example.jjy19.stockmonitor.SharedVariables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +51,18 @@ public class StockRepository {
 
     private static class getAllStocksAsyncTask extends AsyncTask<Void, Void, List<Stock>> {
         private StockDAO stockDao;
+        SharedVariables sv = SharedVariables.getInstance();
 
         private getAllStocksAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
         }
+
+        @Override
+        protected void onPostExecute(List<Stock> stocks) {
+            sv.setDataReady(true);
+            super.onPostExecute(stocks);
+        }
+
 
         @Override
         protected List<Stock> doInBackground(Void... voids) {
@@ -62,13 +71,20 @@ public class StockRepository {
         }
     }
 
-
-
     private static class InsertStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;
+        SharedVariables sv = SharedVariables.getInstance();
 
         private InsertStockAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+             sv.setDataReady(true);
+
+            super.onPostExecute(aVoid);
+
         }
 
         @Override
@@ -80,9 +96,18 @@ public class StockRepository {
 
     private static class UpdateStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;
+        SharedVariables sv = SharedVariables.getInstance();
 
         private UpdateStockAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            sv.setDataReady(true);
+
+            super.onPostExecute(aVoid);
+
         }
 
         @Override
@@ -95,9 +120,18 @@ public class StockRepository {
 
     private static class DeleteStockAsyncTask extends AsyncTask<Stock, Void, Void> {
         private StockDAO stockDao;
+        SharedVariables sv = SharedVariables.getInstance();
 
         private DeleteStockAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            sv.setDataReady(true);
+
+            super.onPostExecute(aVoid);
+
         }
 
         @Override
@@ -109,9 +143,18 @@ public class StockRepository {
 
     private static class DeleteAllStocksAsyncTask extends AsyncTask<Void, Void, Void> {
         private StockDAO stockDao;
+        SharedVariables sv = SharedVariables.getInstance();
 
         private DeleteAllStocksAsyncTask(StockDAO stockDao) {
             this.stockDao = stockDao;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            sv.setDataReady(true);
+
+            super.onPostExecute(aVoid);
+
         }
 
         @Override

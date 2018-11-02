@@ -9,6 +9,14 @@ public class SharedVariables extends Application {
     // stock key for parsing stock objects
     final String StockMessage = "stock";
 
+    private static SharedVariables instance;
+
+    // Global variable
+    private boolean dataReady;
+
+    // Restrict the constructor from being instantiated
+
+
     Toast toast;
 
 
@@ -57,5 +65,20 @@ public class SharedVariables extends Application {
         }
         toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
         toast.show();
+    }
+//    private SharedVariables(){}
+
+    public void setDataReady(boolean d){
+        this.dataReady=d;
+    }
+    public boolean getDataReady(){
+        return this.dataReady;
+    }
+
+    public static synchronized SharedVariables getInstance(){
+        if(instance==null){
+            instance=new SharedVariables();
+        }
+        return instance;
     }
 }

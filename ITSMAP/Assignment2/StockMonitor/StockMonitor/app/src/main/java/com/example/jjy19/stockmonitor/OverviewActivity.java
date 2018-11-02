@@ -30,6 +30,7 @@ import com.example.jjy19.stockmonitor.Service.StockService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OverviewActivity extends AppCompatActivity {
@@ -48,8 +49,6 @@ public class OverviewActivity extends AppCompatActivity {
     StockService boundService;
     List<Stock> stocks;
 
-    int randomCounter = 0;
-
     SharedVariables sV;
     ServiceConnection myServiceConnection;
 
@@ -58,7 +57,8 @@ public class OverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
-        sV = (SharedVariables) getApplication();
+        sV = (SharedVariables)getApplication();
+
 
         myServiceConnection = new ServiceConnection() {
             public void onServiceConnected(ComponentName className, IBinder service) {
@@ -88,7 +88,7 @@ public class OverviewActivity extends AppCompatActivity {
         stockRecyclerView.setAdapter(adapter);
 
 
-        stockViewModel = new StockViewModel(getApplicationContext());
+//        stockViewModel = new StockViewModel(getApplicationContext());
 
 //        stockViewModel = ViewModelProviders.of(this).get(StockViewModel.class);
 //        stockViewModel.getAllStocks().observe(this, new Observer<List<Stock>>() {
@@ -108,11 +108,13 @@ public class OverviewActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                stockViewModel.delete(adapter.getStockAt(viewHolder.getAdapterPosition()));
 
-                stocks = stockViewModel.getAllStocks();
-                adapter.setStocks(stocks);
-                adapter.notifyDataSetChanged();
+//                adapter = new CustomListAdapter();
+//                stockRecyclerView.setAdapter(adapter);
+
+//                stockViewModel.delete(adapter.getStockAt(viewHolder.getAdapterPosition()));
+                boundService.deleteStock(newStock);
+
                 sV.Toast("Stock deleted");
             }
         }).attachToRecyclerView(stockRecyclerView);
@@ -120,7 +122,7 @@ public class OverviewActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new CustomListAdapter.ClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Stock tempStock = stockViewModel.getAllStocks().get(position);
+                Stock tempStock = stocks.get(position);
                 goToDetailsActivity(tempStock);
             }
 
@@ -138,13 +140,9 @@ public class OverviewActivity extends AppCompatActivity {
             public void onRefresh() {
 
                 RequestQueue queue = Volley.newRequestQueue(OverviewActivity.this);
-                int stockListSize = stockViewModel.getAllStocks().size();
-                for (int i = 0; i < stockListSize; i++) {
-                    if (stockViewModel.getAllStocks() != null) {
-                        final Stock updateStock = stockViewModel.getAllStocks().get(i);
-                        updateStockRequest(updateStock, queue);
-                    }
-                }
+
+                boundService.updateStocks(queue);
+
                 swipeContainer.setRefreshing(false);
             }
         });
@@ -169,61 +167,42 @@ public class OverviewActivity extends AppCompatActivity {
             if (intent != null) {
 
                 String str = intent.getStringExtra("ServiceData");
-                RequestQueue queue = Volley.newRequestQueue(OverviewActivity.this);
-                if (initChecker)
-                {
-                    //stocks = stockViewModel.getAllStocks();
-                    initChecker = false;
-                }
+
+//                Stock tempStock = intent.getParcelableExtra("Stock");
 
                 try {
 
-                    tempStock = intent.getParcelableExtra("Stock");
-
-                    int stockListSize = stockViewModel.getAllStocks().size();
 
                     if (str == "Update") {
 
-                    } else if (str == "Add") {
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.setStocks(stocks);
 
-                        stockViewModel.insert(tempStock);
-                        updateStockRequest(tempStock, queue);
+                    } else if (str == "Add") {
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.setStocks(stocks);
+//                        adapter.addAll(stocks);
 
                     } else if (str == "UpdateStock") {
-                        stockViewModel.update(tempStock);
-
-                    } else if (str == "UpdateStocks") {
-
-
-                        for (int i = 0; i < stockListSize; i++) {
-
-                            if (stockViewModel.getAllStocks() != null) {
-
-                                final Stock updateStock = stockViewModel.getAllStocks().get(i);
-
-                                updateStockRequest(updateStock, queue);
-
-                            }
-                        }
-
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.setStocks(stocks);
 
                     } else if (str == "Delete") {
-                        stockViewModel.delete(tempStock);
+                        stocks = intent.getParcelableArrayListExtra("ServiceStockList");
+                        adapter.setStocks(stocks);
+
                     }
 
-                    for (int i = 0; i < 10000; i++) {
-                        randomCounter++;
-                    }
 
-
-                    stocks = stockViewModel.getAllStocks();
-                    adapter.setStocks(stocks);
                     adapter.notifyDataSetChanged();
+
 
                 } catch (Exception e)
                 {
                     e.printStackTrace();
                 }
+
+//                Toast(str);
 
             }
         }

@@ -83,6 +83,7 @@ public class DetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailsActivity.this, OverviewActivity.class);
 
                 boundService.deleteStock(newStock);
+                intent.putExtra("requestCode", SharedVariables.requestCodes.Delete.getValue());
                 setResult(RESULT_OK, intent);
 
 
