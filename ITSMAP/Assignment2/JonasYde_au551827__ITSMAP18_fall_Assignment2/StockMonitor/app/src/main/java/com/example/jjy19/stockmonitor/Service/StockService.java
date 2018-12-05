@@ -2,6 +2,7 @@ package com.example.jjy19.stockmonitor.Service;
 
 import android.app.Application;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.android.volley.Request;
@@ -42,6 +44,7 @@ public class StockService extends Service {
     StockDatabase db;
     RequestQueue queue;
     private StockRepository repository;
+    NotificationCompat.Builder notificationBuilder;
 
     private String TAG = StockService.class.getSimpleName();
 
@@ -83,17 +86,25 @@ public class StockService extends Service {
                             String formattedDate = df.format(c);
 
                             // write notification to used with latests stock update time stamp
-                            Notification n  = new Notification.Builder(StockService.this)
-                                    .setOnlyAlertOnce(true)
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                NotificationChannel channel = new NotificationChannel("updateChannel", "updateChannel", NotificationManager.IMPORTANCE_LOW );
+                                notificationManager.createNotificationChannel(channel);
+                                notificationBuilder = new NotificationCompat.Builder(StockService.this, "updateChannel").setChannelId("updateChannel");
+                            }
+                            else {
+                                notificationBuilder = new NotificationCompat.Builder(StockService.this);
+                            }
+
+                            notificationBuilder.setOnlyAlertOnce(true)
                                     .setContentTitle("Last stock update: ")
                                     .setContentText(formattedDate)
                                     .setSmallIcon(R.drawable.materials)
-                                    .setAutoCancel(true).build();
+                                    .setAutoCancel(true);
 
-                            NotificationManager notificationManager =
-                                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-                            notificationManager.notify(0, n);
+                            notificationManager.notify(0, notificationBuilder.build());
 
                             // make thread sleep for 2 minutes
                             Thread.sleep(120000);
