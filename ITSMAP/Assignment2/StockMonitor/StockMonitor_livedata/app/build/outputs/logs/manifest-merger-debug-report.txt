@@ -1,0 +1,188 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:20:1-40:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\017d52294b44e34097ba29e554168ab1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\37f02cda2840fbd603c1c2e566ba1c39\AndroidManifest.xml:2:1-11:12
+MERGED from [android.arch.persistence.room:runtime:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\9fb2ebdf9b015395ec3ed6c345e00e51\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:17:1-30:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6846bbf463fe61e3d7784e7f39192d80\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\49a56afbe61391469d9d6fcf01914998\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\525677463634180b21d166f0371437cf\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\450ba5044971908ef117fb1990789607\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\e1e88d45408221e5552918a5d4e7a5f3\AndroidManifest.xml:17:1-22:12
+MERGED from [net.zetetic:android-database-sqlcipher:3.5.7] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\android-database-sqlcipher-3.5.7.aar\01bb7fbea706882da8515c77b3f19957\AndroidManifest.xml:2:1-4:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\d1de89dc83aa0f12bb94b21ddb84c1ae\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\aa441daae99724ac09284f9b8881995a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\a4c4bfc4dc3cd33e4f1071ffff53d545\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\65de3441243e150573d8d28021f80790\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\cd8a66edd74dfba7888b9b6f6d85acb6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\8074f54cc81d736750479f1c4c7f3ab1\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\9be3c9fe8e0a475f7e44f9602cafeaf7\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-1.1.0.aar\b2abe487e02bdb7376ff460472f257c1\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\35fa3f0a190098e026a0db6d50b6777f\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db-framework:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\db-framework-1.1.1.aar\da7ea50d7c680e1645cece50ce794b15\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\db-1.1.1.aar\042dbd5eab6e15a9bc25f101bcfd386a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bfd2d5874a3b1ef10280340e67a7a332\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+	package
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:1-32:12
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:5:5-67
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:29:5-67
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:29:5-67
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:5:22-64
+application
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:7:5-30:19
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:32:5-38:19
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:32:5-38:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\37f02cda2840fbd603c1c2e566ba1c39\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\37f02cda2840fbd603c1c2e566ba1c39\AndroidManifest.xml:9:5-20
+MERGED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:22:5-28:19
+MERGED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:22:5-28:19
+	android:supportsRtl
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:14:9-35
+	android:label
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:12:9-41
+	android:roundIcon
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:13:9-54
+	android:icon
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:11:9-43
+	android:allowBackup
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:10:9-35
+	android:theme
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:15:9-40
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:9:9-70
+activity#com.example.jjy19.stockmonitor.OverviewActivity
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:17:9-23:20
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:17:19-51
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:19:17-69
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:21:27-74
+activity#com.example.jjy19.stockmonitor.DetailsActivity
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:24:9-25:71
+	android:parentActivityName
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:25:13-59
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:24:19-50
+activity#com.example.jjy19.stockmonitor.EditActivity
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:26:9-27:70
+	android:parentActivityName
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:27:13-58
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:26:19-47
+service#com.example.jjy19.stockmonitor.Service.StockService
+ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:29:9-57
+	android:name
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml:29:18-54
+uses-sdk
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:25:5-27:41
+MERGED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\017d52294b44e34097ba29e554168ab1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\017d52294b44e34097ba29e554168ab1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\37f02cda2840fbd603c1c2e566ba1c39\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\37f02cda2840fbd603c1c2e566ba1c39\AndroidManifest.xml:5:5-7:41
+MERGED from [android.arch.persistence.room:runtime:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\9fb2ebdf9b015395ec3ed6c345e00e51\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\9fb2ebdf9b015395ec3ed6c345e00e51\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6846bbf463fe61e3d7784e7f39192d80\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\6846bbf463fe61e3d7784e7f39192d80\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\49a56afbe61391469d9d6fcf01914998\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\49a56afbe61391469d9d6fcf01914998\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\525677463634180b21d166f0371437cf\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\525677463634180b21d166f0371437cf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\450ba5044971908ef117fb1990789607\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\450ba5044971908ef117fb1990789607\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\e1e88d45408221e5552918a5d4e7a5f3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.1.1.aar\e1e88d45408221e5552918a5d4e7a5f3\AndroidManifest.xml:20:5-44
+MERGED from [net.zetetic:android-database-sqlcipher:3.5.7] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\android-database-sqlcipher-3.5.7.aar\01bb7fbea706882da8515c77b3f19957\AndroidManifest.xml:3:3-40
+MERGED from [net.zetetic:android-database-sqlcipher:3.5.7] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\android-database-sqlcipher-3.5.7.aar\01bb7fbea706882da8515c77b3f19957\AndroidManifest.xml:3:3-40
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\d1de89dc83aa0f12bb94b21ddb84c1ae\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\d1de89dc83aa0f12bb94b21ddb84c1ae\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\aa441daae99724ac09284f9b8881995a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\aa441daae99724ac09284f9b8881995a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\a4c4bfc4dc3cd33e4f1071ffff53d545\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\a4c4bfc4dc3cd33e4f1071ffff53d545\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\65de3441243e150573d8d28021f80790\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\65de3441243e150573d8d28021f80790\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\cd8a66edd74dfba7888b9b6f6d85acb6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\cd8a66edd74dfba7888b9b6f6d85acb6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\8074f54cc81d736750479f1c4c7f3ab1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\8074f54cc81d736750479f1c4c7f3ab1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\9be3c9fe8e0a475f7e44f9602cafeaf7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\9be3c9fe8e0a475f7e44f9602cafeaf7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-1.1.0.aar\b2abe487e02bdb7376ff460472f257c1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-1.1.0.aar\b2abe487e02bdb7376ff460472f257c1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\35fa3f0a190098e026a0db6d50b6777f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\35fa3f0a190098e026a0db6d50b6777f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\db-framework-1.1.1.aar\da7ea50d7c680e1645cece50ce794b15\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\db-framework-1.1.1.aar\da7ea50d7c680e1645cece50ce794b15\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\db-1.1.1.aar\042dbd5eab6e15a9bc25f101bcfd386a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\db-1.1.1.aar\042dbd5eab6e15a9bc25f101bcfd386a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bfd2d5874a3b1ef10280340e67a7a332\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\runtime-1.1.1.aar\bfd2d5874a3b1ef10280340e67a7a332\AndroidManifest.xml:20:5-44
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		ADDED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+		INJECTED from C:\School\ITSMAP\Assignment2\StockMonitor\StockMonitor_livedata\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:30:5-76
+	android:name
+		ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:30:22-73
+provider#com.amitshekhar.DebugDBInitProvider
+ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:33:9-37:40
+	android:enabled
+		ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:36:13-35
+	android:authorities
+		ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:35:13-71
+	android:exported
+		ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:37:13-37
+	android:name
+		ADDED from [com.amitshekhar.android:debug-db:1.0.4] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\debug-db-1.0.4.aar\9d05d9f699e5effe7de28ea0bb920317\AndroidManifest.xml:34:13-63
+provider#android.arch.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:25:13-68
+	android:multiprocess
+		ADDED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [android.arch.lifecycle:extensions:1.1.0] C:\Users\jjy19\.gradle\caches\transforms-1\files-1.1\extensions-1.1.0.aar\cbd67dd5246855b760f5fc71d123aac4\AndroidManifest.xml:24:13-83
